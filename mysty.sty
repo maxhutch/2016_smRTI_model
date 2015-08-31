@@ -1,0 +1,41 @@
+\ProvidesPackage{mysty}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb}  % Some math symbols
+\usepackage{gensymb}
+\usepackage{paralist}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{fancyhdr} % header footer placement
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{url}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in] {geometry} % Margins
+
+\newcommand{\sref}[1]{Section~\ref{sec:#1}}
+\newcommand{\tref}[1]{Table~\ref{tbl:#1}}
+\newcommand{\eref}[1]{Equation~\ref{eqn:#1}}
+\newcommand{\lref}[1]{Listing~\ref{lst:#1}}
+\newcommand{\fref}[1]{Figure~\ref{fig:#1}}
+
+\newcommand{\slabel}[1]{\label{sec:#1}}
+\newcommand{\tlabel}[1]{\label{tbl:#1}}
+\newcommand{\elabel}[1]{\label{eqn:#1}}
+\newcommand{\llabel}[1]{\label{lst:#1}}
+\newcommand{\flabel}[1]{\label{fig:#1}}
+
+
+\newcommand{\pder}[2] {\frac{\partial #1}{\partial #2}}
+\newcommand{\ppder}[2] {\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\der}[2] {\frac{d #1}{d #2}}
+\newcommand{\dder}[2] {\frac{d^2 #1}{d #2^2}}
+\newcommand{\etal}[0] {et al. }
+
+
+\newcommand{\cref}[1]{Chapter~\ref{sec:#1}}
+\newcommand{\aref}[1]{Appendix~\ref{sec:#1}}
+\newcommand{\clabel}[1]{\label{sec:#1}}
+\newcommand{\alabel}[1]{\label{sec:#1}}
+
+\DeclareMathOperator\erf{erf}
+
