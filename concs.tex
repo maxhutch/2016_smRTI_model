@@ -1,1 +1,23 @@
 \section{Conclusions}
+
+We have proposed a simple ODE model for the growth of single mode Rayleigh-Taylor bubbles and spikes at low Atwood number.
+The model targets an intermediate range of Reynolds numbers and high Peclet number, in which the single mode pertubration grows into an array of coherent bubbles and spikes.
+The dynamics of the bubbles are described by a force balance between bouyancy, viscous drag, and form drag.
+The buoyant force is scaled by a mixing factor related to the volume faction of mixed fluid within the bubble, which is modeled by diffusion across the bubble's interface.
+
+The viscous drag, which is absent in other buoyancy-drag models, is essential to recovering terminal behavior at high aspect ratios and low diffusivities.  
+Without viscous drag or mixing, the buoyant force grows with the aspect ratio while the form drag does not, leading to unbounded bubble velocity.
+In practice, as the velocity grows, the bubble interface breaks up leading to enhanced turbulent mixing.
+
+The ODE has 6 parameters, 3 of which can be constrained by limiting cases.
+The immiscible linear theory, miscibile linear theory, and Poissile flow limits provide constraints.
+The three remaining parameters lend themselves to physical interpretation, providing a guidline for their value.
+
+To validate the simple model under its three constraints, we perform a battery of direct numerical simulations at moderate Reynolds number, high Peclet number, and high aspect ratio.
+The simulations provide trajectories for the bubble height and volume of mixed fluid, which are directly compared to the results of the simple model.
+Unconstrained, the model is able to reproduce the non-dimensional bubble height to one part in ???.
+Constrained by the three limiting cases, the error increases to ???.
+This demonstrates the compatability of the constraints with the model.
+
+While the simple model is sufficient to describe coherent, steady bubbles and spikes at low Atwood numbers and high Peclet numbers, few real flows fall within this regime.
+In this regard, the simple model proposed here is best seen as a starting point for extensions to more realistic flows.

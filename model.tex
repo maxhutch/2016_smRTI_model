@@ -1,0 +1,86 @@
+\section{Model}
+
+We base our model on the buoyancy-drag models of \cite{Oron2001}:
+\begin{equation}
+(\rho_1 + \rho_2) \mathcal{V} \ddot{h} = (\rho_2 - \rho_1) \mathcal{V} - C \dot{h}^2 \rho \mathcal{A}
+\end{equation}
+where $\rho_1$ and $\rho_2$ are the densities of the light and heavy fluid,
+$\mathcal{V}$ is the characteristic volume of the bubble
+$g$ is the acceleration,
+$C$ is a drag-like coefficient, and
+$\mathcal{A}$ is the characteristic cross sectional area of the bubble.
+Making the Boussinesq approximation, $\rho_1 \approx \rho_2$ yields:
+\begin{equation}
+\ddot{h} = A g - \frac{C}{2} \dot{h}^2 \frac{\mathcal{A}}{\mathcal{V}}
+\end{equation}
+In the self-similar regime there is only one length-scale, so $\mathcal{A}/\mathcal{V} \sim 1 / \lambda$.
+However, in the single-mode regime that is the focus of this study, the bubbles are roughly cylindrical, producing two length scales: a span-wise scale $\lambda$ and a stream-wise scale $h$.
+Therefore, for the smRTI $\mathcal{A}/\mathcal{V} \sim \frac{1}{h}$ and the model of Oron et. al yields un-bounded velocities:
+\begin{equation}
+\ddot{h} = A g - \frac{C}{2} \frac{\dot{h}^2}{h}
+\end{equation}
+Because the impact of the form drag decreases at high aspect ratio, we must consider other drag terms, such as skin drag, that do not fall off with increasing aspect ratio.
+
+We begin by listing the forces the bubble experiences.  The first is the buoyant force:
+\begin{equation}
+F_b = C_0 A g \lambda^2 h
+\end{equation}
+where $C_0 \sim 1$.
+The next is the form drag:
+\begin{equation}
+F_f = C_1 \lambda^2 \dot{h}^2
+\end{equation}
+where $C_1$ is drag coefficient-like.
+The next is the viscous, or skin, drag:
+\begin{equation}
+F_s = C_2 \nu \lambda h \dot{h}
+\end{equation}
+where $C_2$ is yet another undetermined parameter and $\nu$ is the kinematic vicosity.
+
+To complete the dynamic equation, we must characterize the inertia of the bubble.
+Consider the limit of $h \rightarrow 0$.  
+Here, closed streamlines must extend from bubble to spike, which has a characteristic length $\lambda$.
+Therefore, we expect the inertia to be a mix of a term which goes as $\lambda^2 h$, as in the cylindrical model, and $\lambda^3$, as in the linear model:
+\begin{equation} \elabel{inertia}
+I = C_3 \lambda^3 + C_4 \lambda^2 h
+\end{equation}
+We will see that including a $\lambda^3$ term allows us to match the linear dynamics.
+The complete dynamic equation is:
+\begin{equation}
+\ddot{h} = \frac{C_0 A g \lambda^2 h - C_1 \lambda^2 \dot{h}^2 - C_2 \nu \lambda h \dot{h}}{C_3 \lambda^3 + C_4 \lambda^2 h}
+\end{equation}
+Without loss of generality, we can let $C_4 = 1$:
+\begin{equation}
+\ddot{h} = \frac{C_0 A g h - C_1 \dot{h}^2 - C_2 \nu (h/\lambda) \dot{h}}{C_3 \lambda + h}
+\end{equation}
+
+As the bubble height grows, the velocity approaches a terminal value specified by the balance between buoyancy and skin drag.
+At terminal velocity, the flux of pure fluid into the bubble is bounded.
+However, the interfacial mixing continues to grow with the interfacial area, which grows with $h$.
+Therefore, for any finite diffusivity, the bubble will ultimately diffuse away.
+For this reason, we find it imperative to include the effects of interficial mixing, at least to the first order.
+
+The quantitiy of mixed fluid $M$ is modeledy by simple diffusion:
+\begin{equation}
+\dot{M} = C_5 D S \frac{1}{\delta}
+\end{equation}
+where D is the diffusivity,
+$S$ is the surface area, and 
+$\delta$ is the interface width.
+Assuming an error function profile, 
+\begin{equation}
+\delta = \frac{M \sqrt{\pi}}{S}
+\end{equation}
+In the spirit of the inertial term, \eref{inertia}, we write the surface area as a mix of a terms including and excluding the stream-wise length scale $h$:
+\begin{equation}
+S = \lambda^2 + C_6 \lambda h
+\end{equation}
+Togther, this yields:
+\begin{equation}
+\dot{M} = \frac{C_5}{\sqrt{\pi}} D (\lambda^2 + C_6 \lambda h)^2 \frac{1}{M}.
+\end{equation}
+Finally, we couple to the dynamic equation by relating the mixed fluid to the dynamic Atwood number:
+\begin{equation}
+A = A_0 \left(1 - \frac{M}{C_3 \lambda^3 + \lambda^2 h} \right)
+\end{equation}
+
