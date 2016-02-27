@@ -1,4 +1,4 @@
-\section{Model}
+\section{Simple model}
 
 We base our model on the buoyancy-drag models of \cite{Oron2001}:
 \begin{equation}
@@ -42,16 +42,16 @@ Consider the limit of $h \rightarrow 0$.
 Here, closed streamlines must extend from bubble to spike, which has a characteristic length $\lambda$.
 Therefore, we expect the inertia to be a mix of a term which goes as $\lambda^2 h$, as in the cylindrical model, and $\lambda^3$, as in the linear model:
 \begin{equation} \elabel{inertia}
-I = C_3 \lambda^3 + C_4 \lambda^2 h
+I = C_4 \lambda^2 h + C_3 \lambda^3
 \end{equation}
 We will see that including a $\lambda^3$ term allows us to match the linear dynamics.
 The complete dynamic equation is:
 \begin{equation}
-\ddot{h} = \frac{C_0 A g \lambda^2 h - C_1 \lambda^2 \dot{h}^2 - C_2 \nu \lambda h \dot{h}}{C_3 \lambda^3 + C_4 \lambda^2 h}
+\ddot{h} = \frac{C_0 A g \lambda^2 h - C_1 \lambda^2 \dot{h}^2 - C_2 \nu \lambda h \dot{h}}{C_3 \lambda^2 h + C_4 \lambda^3}
 \end{equation}
-Without loss of generality, we can let $C_4 = 1$:
+Without loss of generality, we can let $C_0 = 1$:
 \begin{equation}
-\ddot{h} = \frac{C_0 A g h - C_1 \dot{h}^2 - C_2 \nu (h/\lambda) \dot{h}}{C_3 \lambda + h}
+\ddot{h} = \frac{A g h - C_1 \dot{h}^2 - C_2 \nu (h/\lambda) \dot{h}}{ C_3 h + C_4 \lambda }
 \end{equation}
 
 As the bubble height grows, the velocity approaches a terminal value specified by the balance between buoyancy and skin drag.
@@ -62,7 +62,7 @@ For this reason, we find it imperative to include the effects of interficial mix
 
 The quantitiy of mixed fluid $M$ is modeledy by simple diffusion:
 \begin{equation}
-\dot{M} = C_5 D S \frac{1}{\delta}
+\dot{M} = D S \frac{1}{\delta}
 \end{equation}
 where D is the diffusivity,
 $S$ is the surface area, and 
@@ -73,14 +73,68 @@ Assuming an error function profile,
 \end{equation}
 In the spirit of the inertial term, \eref{inertia}, we write the surface area as a mix of a terms including and excluding the stream-wise length scale $h$:
 \begin{equation}
-S = \lambda^2 + C_6 \lambda h
+S = C_5 \lambda h + C_6 \lambda^2
 \end{equation}
 Togther, this yields:
 \begin{equation}
-\dot{M} = \frac{C_5}{\sqrt{\pi}} D (\lambda^2 + C_6 \lambda h)^2 \frac{1}{M}.
+\dot{M} = \frac{1}{\sqrt{\pi}} D (C_5 \lambda h + C_6 \lambda^2 + )^2 \frac{1}{M}.
 \end{equation}
 Finally, we couple to the dynamic equation by relating the mixed fluid to the dynamic Atwood number:
-\begin{equation}
-A = A_0 \left(1 - \frac{M}{C_3 \lambda^3 + \lambda^2 h} \right)
+\begin{equation} \elabel{effective-atwood}
+A = A_0 \left(1 - \frac{M}{C_3 \lambda^2 h  + C_4 \lambda^3} \right)
 \end{equation}
 
+
+\subsection{Limits}
+First, consider the limit where $D = 0$, $\nu = 0$, and $h \rightarrow 0$.
+The dynamical equation becomes
+\begin{equation}
+\ddot{h} = \frac{A g }{C_4 \lambda} h
+\end{equation}
+which matches Rayleigh's original linear stability analysis if 
+\begin{equation} \elabel{c4}
+C_4 = 1/(2 \pi).
+\end{equation}
+
+Next, consider the limit when $\delta \rightarrow 0 $ and $h \rightarrow 0$.
+In the linear theory, the Atwood number is rescaled:
+\begin{equation}
+A = \frac{A_0}{1 + \pi^{-1/2} k \delta} \approx A_0 \left(1 - \frac{k \delta}{\sqrt{\pi}}\right)
+\end{equation}
+We equate this to \eref{effective-atwood}:
+\begin{equation}
+\frac{2 \pi \delta}{\lambda \sqrt{\pi}} = \frac{\delta}{\sqrt{\pi}} C_6 \lambda^2 \frac{1}{C_3 \lambda^3}
+\end{equation}
+Plugging in \eref{c3}, we see that
+\begin{equation} \elabel{c6}
+C_6 = 1
+\end{equation}
+
+Finally, we consider the limit when $h \rightarrow \infty$ and $D = 0$:
+The dynamical equation becomes
+\begin{equation}
+\ddot{h} = \frac{A g - C_2 \nu (1/\lambda) \dot{h}}{C_3}
+\end{equation}
+which leads to a terminal velocity of:
+\begin{equation}
+\dot{h} = \frac{A g \lambda}{C_2 \nu}
+\end{equation}
+The case of extended bubbles and spikes affected only by viscous drag is highly analogous to flow through a square duct.
+Therefore, we can use solutions for Poissile flow to estimate $\dot{h}$ and add an approximate constraint on $C_2$.
+At the least, this will serve as a good starting guess for $C_2$ for parameter optimization.
+
+\begin{comment}
+Next, consider the limit where $D = 0$ and $h \rightarrow 0$.
+The dynamical equation becomes:
+\begin{equation}
+\ddot{h} = \left[\frac{C_0 A g }{C_3 \lambda} - C_2 \nu \dot{h}/\lambda \right] h
+\end{equation}
+In the spirit of the linear growth model, assume the interface grows as $h(t) = a_0 \cosh[\gamma t] $, with
+\begin{equation}
+\gamma = \frac{C_0 A g }{C_3 \lambda} - C_2 \nu \dot{h}/\lambda 
+\end{equation}
+The velocity is given by $\dot{h} = a_0 \gamma \sinh[\gamma t] = \gamma \tanh[\gamma t] h$, yielding:
+\begin{equation}
+\gamma = \frac{C_0 A g }{C_3 \lambda} - \gamma C_2 \tanh[\gamma t] h \nu /\lambda 
+\end{equation}
+\end{comment}

@@ -1,0 +1,43 @@
+\section{Results}
+
+The numerical experiments 
+
+\subsection{Scope of model}
+
+The model proposed in \sref{model} assumes the bubble is a coherent structure with a single velocity.
+As the bubble accelerates, it can break up into multiple smaller bubbles.
+For the purposes of evaluating a single-bubble model, flows that have broken up need to be discarded.
+We identify the break-up by...
+
+\subsection{Fitting}
+The proposed model has 4 undetermined parameters.
+In each case, we estimate the value a-priori by physical arguments.
+Then, the estimates are used as the starting point for fitting, that is minimization of the model error.
+
+The parameter $C_1$ scales the form drag and serves as a drag coefficient.  
+Because we have let $C_0 = 1$, the hydralic diameter of the bubble is roughly $\lambda$.
+Had we let $C_0 = 1/4$, the diameter would be the more common $\lambda/2$, but many of the parameters would be fractional.
+Now, we relate $C_1$ to the drag coefficient $C_d$ in the drag equation:
+\begin{equation}
+C_1 \lambda^2 \dot{h}^2 = \frac{1}{2} C_d \lambda^2 \dot{h}^2
+\end{equation}
+so $C_1$ can be estimated using drag coefficients of cylindrical objects:
+\begin{equation}
+C_1 = \frac{1}{2} C_d \approx ???
+\end{equation}
+
+The parameter $C_2$ ...
+
+The parameter $C_3$ gives the ratio of the inertial height to the buoyant height.
+Excepting the effects of interfacial mixing, which are accounted for seperately, the interial and buoyant heights should be the same.
+In other words, entrainment of non-buoyant fluid at the head and tail of the bubble should not scale with the height.
+
+The parameter $C_5$ gives the ratio of the bubble height and diameter to the interfacial area.
+If the bubble were a cylinder, $C_5 = \pi$; if the bubble where rectangular, $C_5 = 4$.
+
+\subsection{Validating limits}
+To validate the limits imposed by the linear theory, we repeat the fit allowing those values to change.
+The result is a model error of ???, which is ???\% less than fit with the limits strictly imposed.
+This small change in model accuracy indicates that model is compatible with those limits.
+
+
