@@ -12,7 +12,7 @@ We identify the break-up by...
 \subsection{Fitting}
 The proposed model has 4 undetermined parameters.
 In each case, we estimate the value a-priori by physical arguments.
-Then, the estimates are used as the starting point for fitting, that is minimization of the model error.
+Then, the estimates are used as the starting point for fitting, that is minimization of the model error over the scope of the model.
 
 The parameter $C_1$ scales the form drag and serves as a drag coefficient.  
 Because we have let $C_0 = 1$, the hydralic diameter of the bubble is roughly $\lambda$.
@@ -26,14 +26,23 @@ so $C_1$ can be estimated using drag coefficients of cylindrical objects:
 C_1 = \frac{1}{2} C_d \approx ???
 \end{equation}
 
-The parameter $C_2$ ...
+The parameter $C_2$ scales the viscous drag, so it is also a drag coefficient of sorts.
+Using the analogy to Poissile flow, i.e. pipe and duct flow, we can also relate $C_2$ to the Darcy and Fanning friction factors:
+\begin{equation}
+\frac{A g \lambda}{C_2 \nu} = ...
+\end{equation}
 
 The parameter $C_3$ gives the ratio of the inertial height to the buoyant height.
 Excepting the effects of interfacial mixing, which are accounted for seperately, the interial and buoyant heights should be the same.
 In other words, entrainment of non-buoyant fluid at the head and tail of the bubble should not scale with the height.
 
+The parameter $C_4$, which is constrained by the linear theory, gives the ratio low-amplitude buoyancy to entrainment.
+The value being less than one signifies that a small quanity of buoyant fluid is responsible for driving a much larger circulation.
+
 The parameter $C_5$ gives the ratio of the bubble height and diameter to the interfacial area.
 If the bubble were a cylinder, $C_5 = \pi$; if the bubble where rectangular, $C_5 = 4$.
+
+The parameter $C_6$, which is constrained by the diffusive linear theory, gives the ratio of stream-wise diffusion to stream-wise to span-wise entrainment.
 
 \subsection{Validating limits}
 To validate the limits imposed by the linear theory, we repeat the fit allowing those values to change.

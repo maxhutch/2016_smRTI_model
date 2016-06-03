@@ -14,14 +14,16 @@ Making the Boussinesq approximation, $\rho_1 \approx \rho_2$ yields:
 \ddot{h} = A g - \frac{C}{2} \dot{h}^2 \frac{\mathcal{A}}{\mathcal{V}}
 \end{equation}
 In the self-similar regime there is only one length-scale, so $\mathcal{A}/\mathcal{V} \sim 1 / \lambda$.
-However, in the single-mode regime that is the focus of this study, the bubbles are roughly cylindrical, producing two length scales: a span-wise scale $\lambda$ and a stream-wise scale $h$.
+However, in the single-mode regime that is the focus of this study, the bubbles are elongated, producing two length scales: a span-wise scale $\lambda$ and a stream-wise scale $h$.
 Therefore, for the smRTI $\mathcal{A}/\mathcal{V} \sim \frac{1}{h}$ and the model of Oron et. al yields un-bounded velocities:
 \begin{equation}
 \ddot{h} = A g - \frac{C}{2} \frac{\dot{h}^2}{h}
 \end{equation}
-Because the impact of the form drag decreases at high aspect ratio, we must consider other drag terms, such as skin drag, that do not fall off with increasing aspect ratio.
+Because the strength of the form drag relative to buoyancy decreases at high aspect ratio, we must consider other drag terms, such as skin drag, that grow at least linearly with $h$.
 
-We begin by listing the forces the bubble experiences.  The first is the buoyant force:
+\subsection{Dynamics}
+
+We begin by listing the external forces the bubble experiences.  The first is the buoyant force:
 \begin{equation}
 F_b = C_0 A g \lambda^2 h
 \end{equation}
@@ -39,7 +41,7 @@ where $C_2$ is yet another undetermined parameter and $\nu$ is the kinematic vic
 
 To complete the dynamic equation, we must characterize the inertia of the bubble.
 Consider the limit of $h \rightarrow 0$.  
-Here, closed streamlines must extend from bubble to spike, which has a characteristic length $\lambda$.
+Here, streamlines must extend from bubble to spike, which has a characteristic length $\lambda$.
 Therefore, we expect the inertia to be a mix of a term which goes as $\lambda^2 h$, as in the cylindrical model, and $\lambda^3$, as in the linear model:
 \begin{equation} \elabel{inertia}
 I = C_4 \lambda^2 h + C_3 \lambda^3
@@ -54,11 +56,13 @@ Without loss of generality, we can let $C_0 = 1$:
 \ddot{h} = \frac{A g h - C_1 \dot{h}^2 - C_2 \nu (h/\lambda) \dot{h}}{ C_3 h + C_4 \lambda }
 \end{equation}
 
+\subsection{Mixing}
+
 As the bubble height grows, the velocity approaches a terminal value specified by the balance between buoyancy and skin drag.
 At terminal velocity, the flux of pure fluid into the bubble is bounded.
 However, the interfacial mixing continues to grow with the interfacial area, which grows with $h$.
 Therefore, for any finite diffusivity, the bubble will ultimately diffuse away.
-For this reason, we find it imperative to include the effects of interficial mixing, at least to the first order.
+For this reason, we must include the effects of interficial mixing, at least to the first order.
 
 The quantitiy of mixed fluid $M$ is modeledy by simple diffusion:
 \begin{equation}
@@ -67,7 +71,7 @@ The quantitiy of mixed fluid $M$ is modeledy by simple diffusion:
 where D is the diffusivity,
 $S$ is the surface area, and 
 $\delta$ is the interface width.
-Assuming an error function profile, 
+We approximate the scala profile as an error function, yielding an expression for the thickness
 \begin{equation}
 \delta = \frac{M \sqrt{\pi}}{S}
 \end{equation}
@@ -77,13 +81,19 @@ S = C_5 \lambda h + C_6 \lambda^2
 \end{equation}
 Togther, this yields:
 \begin{equation}
-\dot{M} = \frac{1}{\sqrt{\pi}} D (C_5 \lambda h + C_6 \lambda^2 + )^2 \frac{1}{M}.
+\dot{M} = \frac{1}{\sqrt{\pi}} D (C_5 \lambda h + C_6 \lambda^2)^2 \frac{1}{M}.
 \end{equation}
 Finally, we couple to the dynamic equation by relating the mixed fluid to the dynamic Atwood number:
 \begin{equation} \elabel{effective-atwood}
 A = A_0 \left(1 - \frac{M}{C_3 \lambda^2 h  + C_4 \lambda^3} \right)
 \end{equation}
 
+\subsection{Vorticity}
+\begin{align*}
+F &= \nu \lambda^2 ( \omega \lambda - \dot{h} ) \\
+\tau &= \nu \lambda^3 ( \omega \lambda - \dot{h} )  \\
+\dot{\omega} &= \frac{\tau}{\lambda^5} 
+\end{align*}
 
 \subsection{Limits}
 First, consider the limit where $D = 0$, $\nu = 0$, and $h \rightarrow 0$.
