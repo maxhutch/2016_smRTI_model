@@ -25,33 +25,36 @@ Because the strength of the form drag relative to buoyancy decreases at high asp
 
 We begin by listing the external forces the bubble experiences.  The first is the buoyant force:
 \begin{equation}
-F_b = C_0 A g \lambda^2 h
+F_b = C_0 A g \lambda^2 h,
 \end{equation}
-where $C_0 \sim 1$.
+where $C_0$ is an unknown coefficient.
 The next is the form drag:
 \begin{equation}
-F_f = C_1 \lambda^2 \dot{h}^2
+F_f = C_1 \lambda^2 \dot{h}^2,
 \end{equation}
-where $C_1$ is drag coefficient-like.
+where $C_1$ is similar to a drag coefficient.
 The next is the viscous, or skin, drag:
 \begin{equation}
-F_s = C_2 \nu \lambda h \dot{h}
+F_s = C_2 \nu \lambda h \dot{h},
 \end{equation}
-where $C_2$ is yet another undetermined parameter and $\nu$ is the kinematic vicosity.
+where $C_2$ is another unknown coefficient and 
+$\nu$ is the kinematic vicosity.
 
 To complete the dynamic equation, we must characterize the inertia of the bubble.
-Consider the limit of $h \rightarrow 0$.  
-Here, streamlines must extend from bubble to spike, which has a characteristic length $\lambda$.
-Therefore, we expect the inertia to be a mix of a term which goes as $\lambda^2 h$, as in the cylindrical model, and $\lambda^3$, as in the linear model:
+The bubble is roughly cylindrical with a height $h$, so we expect an inertial term of the form $\lambda^2 h$.
+However, consider the limit of $h \rightarrow 0$.  
+Here, streamlines must extend from bubble to spike, which has a characteristic separation $\lambda$ for an inertial term of the form $\lambda^3$.
+Therefore, we expect the inertia to be a mix of a term that goes as $\lambda^2 h$ and one that goes as$\lambda^3$:
 \begin{equation} \elabel{inertia}
-I = C_4 \lambda^2 h + C_3 \lambda^3
+I = C_4 \lambda^2 h + C_3 \lambda^3,
 \end{equation}
-We will see that including a $\lambda^3$ term allows us to match the linear dynamics.
+where $C_4$ and $C_5$ are two more unknown coefficients.
+
 The complete dynamic equation is:
 \begin{equation}
 \ddot{h} = \frac{C_0 A g \lambda^2 h - C_1 \lambda^2 \dot{h}^2 - C_2 \nu \lambda h \dot{h}}{C_3 \lambda^2 h + C_4 \lambda^3}
 \end{equation}
-Without loss of generality, we can let $C_0 = 1$:
+Without loss of generality, we can let $C_0 = 1$ and simplify:
 \begin{equation}
 \ddot{h} = \frac{A g h - C_1 \dot{h}^2 - C_2 \nu (h/\lambda) \dot{h}}{ C_3 h + C_4 \lambda }
 \end{equation}
