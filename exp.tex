@@ -42,5 +42,20 @@ Simulations are performed with the NekBox version of the Nek5000 code, which has
 The spectral element method implemented by NekBox has purely dispersive errors and converges expoentially with the spectral order.
 The the resolution parameters; the number of spectral elements, the order of the spectral elements, and the time step; were chosen to achieve an accuracy of $10^{-4}$ in the bubble aspect ratio~\cite{Convergence2016}.
 
+\subsection{Bubble height}
 
+We extract the span-wise minimum, maximum, and mean scalar values.
+We are considering the miscible RTI, so the shape of the profiles is due to a combination of advection in the bubble and diffusion across the interface.
+We can assume an error function-like profile across the interface at the bubble tip, but diffusion across the bubble sidewalls results in a linear profile.
+To separate the definition of the bubble tip from the decreasing effective Atwood number, we introduce a new definition: the bubble tip is defined as the inflection point in the span-wise maximum scalar profile.
+
+\subsection{Fitting}
+
+The model is integrated using the variable-coefficient ordinary differential equation solver for stiff systems.
+The model error is computed as the root mean square error between the integrated model and the numerical values for the bubble height.
+The coefficients are fit by minimizing the model error.
+
+The non-linear global minimization problem is solved with the covariance matrix adaptation evolution strategy (CMA-ES).
+CMA-ES iteratively refines a sample distribution that evolves towards the global optimum.
+Computing the model error is very inexpensive compared to the simulations, so we choose a broad initial distribution with a large population size.
 
