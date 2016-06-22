@@ -1,5 +1,7 @@
 \section{Results}
 
+\newcommand{\fittol}[0]{0.01~}
+
 \begin{figure}
 \includegraphics[width=\columnwidth]{figs/H-0.0016-0.0002.eps}
 \caption{ \flabel{fit}
@@ -29,7 +31,7 @@ The values of the fit coefficieints, their dependence on the Grashof and Schmidt
 \begin{figure}
 \includegraphics[width=\columnwidth]{figs/Err-vs-Gr-Sc}
 \caption{ \flabel{errVsParam}
-  Error vs Grashof and Schmidt numbers.
+  Model error vs Grashof and Schmidt numbers.
 }
 \end{figure}
 
@@ -51,6 +53,16 @@ The proposed model has 4 undetermined parameters.
 In each case, we estimate the value a-priori by physical arguments.
 Then, the estimates are used as the starting point for fitting, that is minimization of the model error over the scope of the model.
 
+\subsubsection{Form drag coefficient, $C_1$}
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figs/C1-vs-Gr-Sc}
+\caption{ \flabel{C1VsParam}
+  Best fit for $C_1$ vs Grashof and Schmidt numbers.
+  Cases for which the relative model error exceeds \fittol are excluded.
+}
+\end{figure}
+
 The parameter $C_1$ scales the form drag and serves as a drag coefficient.  
 Because we have let $C_0 = 1$, the hydralic diameter of the bubble is roughly $\lambda$.
 Had we let $C_0 = 1/4$, the diameter would be the more common $\lambda/2$, but many of the parameters would be fractional.
@@ -63,23 +75,50 @@ so $C_1$ can be estimated using drag coefficients of cylindrical objects:
 C_1 = \frac{1}{2} C_d \approx ???
 \end{equation}
 
+\subsubsection{Skin drag coefficient, $C_2$}
+\begin{figure}
+\includegraphics[width=\columnwidth]{figs/C2-vs-Gr-Sc}
+\caption{ \flabel{C2VsParam}
+  Best fit for $C_2$ vs Grashof and Schmidt numbers.
+  Cases for which the relative model error exceeds \fittol are excluded.
+}
+\end{figure}
+
+
 The parameter $C_2$ scales the viscous drag, so it is also a drag coefficient of sorts.
 Using the analogy to Poissile flow, i.e. pipe and duct flow, we can also relate $C_2$ to the Darcy and Fanning friction factors:
 \begin{equation}
 \frac{A g \lambda}{C_2 \nu} = ...
 \end{equation}
 
+\subsubsection{Inertial coefficient, $C_3$}
+\begin{figure}
+\includegraphics[width=\columnwidth]{figs/C3-vs-Gr-Sc}
+\caption{ \flabel{C3VsParam}
+  Best fit for $C_3$ vs Grashof and Schmidt numbers.
+  Cases for which the relative model error exceeds \fittol are excluded.
+}
+\end{figure}
+
+
 The parameter $C_3$ gives the ratio of the inertial height to the buoyant height.
 Excepting the effects of interfacial mixing, which are accounted for seperately, the interial and buoyant heights should be the same.
 In other words, entrainment of non-buoyant fluid at the head and tail of the bubble should not scale with the height.
 
-The parameter $C_4$, which is constrained by the linear theory, gives the ratio low-amplitude buoyancy to entrainment.
-The value being less than one signifies that a small quanity of buoyant fluid is responsible for driving a much larger circulation.
+\subsubsection{Interfacial area coefficient, $C_5$}
+\begin{figure}
+\includegraphics[width=\columnwidth]{figs/C5-vs-Gr-Sc}
+\caption{ \flabel{C5VsParam}
+  Best fit for $C_5$ vs Grashof and Schmidt numbers.
+  Cases for which the relative model error exceeds \fittol are excluded.
+}
+\end{figure}
+
+
 
 The parameter $C_5$ gives the ratio of the bubble height and diameter to the interfacial area.
 If the bubble were a cylinder, $C_5 = \pi$; if the bubble where rectangular, $C_5 = 4$.
 
-The parameter $C_6$, which is constrained by the diffusive linear theory, gives the ratio of stream-wise diffusion to stream-wise to span-wise entrainment.
 
 \subsection{Validating limits}
 To validate the limits imposed by the linear theory, we repeat the fit allowing those values to change.
