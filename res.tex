@@ -15,7 +15,7 @@ The numerical experiments sample the mapping from Grashof and Schmidt number to 
 \end{equation*}
 Each trajectory is fit to the buoyancy-drag model presented in \sref{model}, constrained by \eref{c4} and \eref{c6}, resulting in the following 4-parameter model:
 \begin{align}
-\ddot{h} &= \frac{A g h - C_1 \dot{h}^2 - C_2 \nu (h/\lambda) \dot{h}}{ C_3 h + \lambda/(2\pi) } \\
+\ddot{h} &= \frac{A g h - C_1 \dot{h}^2 - C_2 \nu (h/\lambda^2) \dot{h}}{ C_3 h + \lambda/(2\pi) } \\
 A &= A_0 \left[ 1 - \frac{M}{C_3 \lambda^2 h  + \lambda^3 / (2\pi)} \right]  \\
 \dot{M} &= \frac{D \left[C_5 \lambda h + \lambda^2\right] ^2}{M \sqrt{\pi}} .
 \end{align}
@@ -90,9 +90,13 @@ $C_1$ increases with Grashof and Schmidt number.
 \end{figure}
 
 The parameter $C_2$ scales the viscous drag, so it is also a drag coefficient of sorts.
-Using the analogy to Poissile flow, i.e. pipe and duct flow, we can also relate $C_2$ to the Darcy and Fanning friction factors, as in \sref{model}
+Using the analogy to Poissile flow, i.e. pipe and duct flow, we can also relate $C_2$ to the Darcy and Fanning friction factors, as in \sref{model}.
+The mean velocity through a duct can be written as:
 \begin{equation}
-\dot{h} = \frac{A g \lambda}{C_2 \nu} = \sqrt{A g \lambda^2 }
+A g h = \frac{8 \nu h v}{r^2}
+\end{equation}
+\begin{equation}
+\dot{h} = \frac{A g \lambda}{C_2 \nu} = \sqrt{A g \lambda^3 }
 \end{equation}
 
 \subsubsection{Inertial coefficient, $C_3$}
