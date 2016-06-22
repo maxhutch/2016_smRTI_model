@@ -47,8 +47,9 @@ We can identify cases for which the bubble height receeds over the first time un
 Similar to the break-up, decreasing the Grashof number, Schmidt number, or both should supress the bubble growth, so we can identify a bifurcation boundary here as well.
 
 The accuracy of the model can be seen directly by plotting the error vs the Grashof and Schmidt numbers, as seen in \fref{errVsParam}.
+The model is accurate for Rayleigh numbers above 2000.
 
-\subsection{Fitting}
+\subsection{Fit coefficients}
 The proposed model has 4 undetermined parameters.
 In each case, we estimate the value a-priori by physical arguments.
 Then, the estimates are used as the starting point for fitting, that is minimization of the model error over the scope of the model.
@@ -68,12 +69,15 @@ Because we have let $C_0 = 1$, the hydralic diameter of the bubble is roughly $\
 Had we let $C_0 = 1/4$, the diameter would be the more common $\lambda/2$, but many of the parameters would be fractional.
 Now, we relate $C_1$ to the drag coefficient $C_d$ in the drag equation:
 \begin{equation}
-C_1 \lambda^2 \dot{h}^2 = \frac{1}{2} C_d \lambda^2 \dot{h}^2
+C_1 \lambda^2 \dot{h}^2 = \frac{1}{2} C_d A \dot{h}^2
 \end{equation}
 so $C_1$ can be estimated using drag coefficients of cylindrical objects:
 \begin{equation}
-C_1 = \frac{1}{2} C_d \approx ???
+C_1 = \frac{1}{2} C_d \frac{A}{\lambda^2} = 0.41 \frac{A}{\lambda^2} \approx 0.3
 \end{equation}
+
+We plot the best fit values of $C_1$ vs the Grashof and Schimdt number in \fref{C1VsParam}.
+$C_1$ increases with Grashof and Schmidt number.
 
 \subsubsection{Skin drag coefficient, $C_2$}
 \begin{figure}
@@ -84,11 +88,10 @@ C_1 = \frac{1}{2} C_d \approx ???
 }
 \end{figure}
 
-
 The parameter $C_2$ scales the viscous drag, so it is also a drag coefficient of sorts.
-Using the analogy to Poissile flow, i.e. pipe and duct flow, we can also relate $C_2$ to the Darcy and Fanning friction factors:
+Using the analogy to Poissile flow, i.e. pipe and duct flow, we can also relate $C_2$ to the Darcy and Fanning friction factors, as in \sref{model}
 \begin{equation}
-\frac{A g \lambda}{C_2 \nu} = ...
+\dot{h} = \frac{A g \lambda}{C_2 \nu} = \sqrt{A g \lambda^2 }
 \end{equation}
 
 \subsubsection{Inertial coefficient, $C_3$}
