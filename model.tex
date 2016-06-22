@@ -35,7 +35,7 @@ F_f = C_1 \lambda^2 \dot{h}^2,
 where $C_1$ is similar to a drag coefficient.
 The next is the viscous, or skin, drag:
 \begin{equation}
-F_s = C_2 \nu \lambda h \dot{h},
+F_s = C_2 \nu h \dot{h},
 \end{equation}
 where $C_2$ is another unknown coefficient and 
 $\nu$ is the kinematic vicosity.
@@ -52,12 +52,22 @@ where $C_4$ and $C_5$ are two more unknown coefficients.
 
 The complete dynamic equation is:
 \begin{equation}
-\ddot{h} = \frac{C_0 A g \lambda^2 h - C_1 \lambda^2 \dot{h}^2 - C_2 \nu \lambda h \dot{h}}{C_3 \lambda^2 h + C_4 \lambda^3}
+\ddot{h} = \frac{C_0 A g \lambda^2 h - C_1 \lambda^2 \dot{h}^2 - C_2 \nu h \dot{h}}{C_3 \lambda^2 h + C_4 \lambda^3}
 \end{equation}
 Without loss of generality, we can let $C_0 = 1$ and simplify:
 \begin{equation}
 \ddot{h} = \frac{A g h - C_1 \dot{h}^2 - C_2 \nu (h/\lambda) \dot{h}}{ C_3 h + C_4 \lambda }
 \end{equation}
+We can non-dimensionalize by defining a dimensionless length and time:
+\begin{equation}
+z = \frac{h}{\lambda} \qquad \tau = \sqrt{\frac{A g}{\lambda}} t,
+\end{equation}
+which simplifes:
+\begin{equation}
+\ddot{z} = \frac{z - C_1 \dot{z}^2 - C_2 \text{Gr}^{-1/2} z \dot{z}}{C_3 z + C_4},
+\end{equation}
+where $\text{Gr} = A g \lambda^3 \nu^{-2}$ is the Grashof number.
+
 
 \subsection{Mixing}
 
@@ -90,13 +100,15 @@ Finally, we couple to the dynamic equation by relating the mixed fluid to the dy
 \begin{equation} \elabel{effective-atwood}
 A = A_0 \left(1 - \frac{M}{C_3 \lambda^2 h  + C_4 \lambda^3} \right)
 \end{equation}
-
-\subsection{Vorticity}
-\begin{align*}
-F &= \nu \lambda^2 ( \omega \lambda - \dot{h} ) \\
-\tau &= \nu \lambda^3 ( \omega \lambda - \dot{h} )  \\
-\dot{\omega} &= \frac{\tau}{\lambda^5} 
-\end{align*}
+We can non-dimensionalize by defining
+\begin{equation}
+m = \frac{M}{\lambda^3},
+\end{equation}
+which simplifes:
+\begin{equation}
+\dot{m} = \frac{1}{\text{Sc} \sqrt{\pi \text{Gr}}} \left(C_5 z + C_6\right)^2 \frac{1}{m},
+\end{equation}
+where $\text{Sc} = \nu / D$ is the Schmidt number.
 
 \subsection{Limits}
 First, consider the limit where $D = 0$, $\nu = 0$, and $h \rightarrow 0$.
@@ -130,7 +142,11 @@ The dynamical equation becomes
 \end{equation}
 which leads to a terminal velocity of:
 \begin{equation}
-\dot{h} = \frac{A g \lambda}{C_2 \nu}
+\dot{h} = \frac{A g}{C_2 \nu},
+\end{equation}
+or a non-dimensional velocity, i.e. Froude number:
+\begin{equation}
+\text{Fr} = \frac{d z}{d \tau} = \frac{\sqrt{\text{Gr}}}{C_2}.
 \end{equation}
 The case of extended bubbles and spikes affected only by viscous drag is highly analogous to flow through a square duct.
 Therefore, we can use solutions for Poissile flow to estimate $\dot{h}$ and add an approximate constraint on $C_2$.
