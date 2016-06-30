@@ -2,7 +2,7 @@
 
 The Rayleigh-Taylor instability has been the subject of considerable study since its characterization by Lord Rayleigh in the 19th century.
 Despite this, many aspects of the non-linear growth remain poorly understood.
-Analytic models based on potential flow have been reasonably effective for flows with a large density jump, i.e. Atwood numbers near unity.
+Analytic models based on potential flow have been reasonably effective for flows with a large density jump, i.e. Atwood number, $\Delta \rho / \sum \rho$, near unity.
 However, recent experiments at low Atwood number have demonstrated a significant departure from the potential flow limit.
 The Rayleigh-Taylor front can be seen accelerating past the terminal velocity predicted by potential flow models.
 The acceleration persists beyond times which are experimentally accesible, so numerous efforts have been made to compute the late time flow numerically.
@@ -13,7 +13,7 @@ If the Atwood number is low, then at early times the interface grows exponential
 \begin{equation} \elabel{duff0}
 \gamma = \sqrt{\frac{A g k}{1 + \pi^{-1/2} k \delta} + \nu^2 k^4} - (\nu + D) k^2,
 \end{equation}
-where $A = \Delta \rho / \sum \rho$ is the Atwood number,
+where $A$ is the Atwood number,
 $g$ is the local acceleration,
 $\delta$ is the interface thickness,
 $\nu$ is the kinematic viscosity, and
@@ -30,8 +30,9 @@ Potential flow models have been extended $A < 1$, with the most successful model
 v_G = \sqrt{A g \lambda}
 \end{equation}
 
-Experiments by Wilkinson and Jacobs show that after reaching the velocity given by \eref{goncharov}, the low Atwood dynamics accelerate a second time.
+Experiments by Wilkinson and Jacobs show that after reaching the velocity given by \eref{goncharov}, low Atwood bubbles unexpectedly accelerate a second time.
 This is termed `reacceleration`, with the terminal velocity replaced by a `stagnation velocity`.
+Reacceleration was not present in popular potential flow and buoyancy-drag models, and attempts to caputre reacceleration have been the emphasis of recent model development in the low Atwood number regime.
 
 Experiments have thus far been unable to observe more than the onset of the reacceleration phase.
 Therefore, the community has turned to numerical studies to compute late-time dynamics.
@@ -41,12 +42,13 @@ In the study by Wei and Livescu, the flow reaccelerates and then breaks up into 
 
 Buoyoncy-drag models have been proposed for the multi-mode and single-mode dynamics of the bubble front.
 They balance the buoyant force of the bubble with a drag force to predict the front velocity as a function of the characteristic length.
-
+Ramaprabhu proposes an additional forcing term based on the development of a vortex ring at the bubble tip, but relies on observation of the mean vorticity experimentally or in numerical simulations.
+There is a need for a predictive model for reacceleration that relies only on the initial conditions.
 
 \paragraph{Outline}
 In \sref{model}, we propose a simple buoyancy-drag model for the dynamics of the smRTI.
 In \sref{results}, we present a battery of numerical trials.
 In \sref{fit}, we evaluate the simple model against numerical results.
-In \sref{discuss}, we discuss the strenghts and weaknesses of the model, extensions, and potential tests.
+In \sref{discuss}, we discuss the strengths and weaknesses of the model, extensions, and potential tests.
 Finally, in \sref{conc}, we assess the current state of smRTI and highlight outstanding questions.
 

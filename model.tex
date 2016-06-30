@@ -79,7 +79,7 @@ For this reason, we must include the effects of interficial mixing, at least to 
 
 The quantitiy of mixed fluid $M$ is modeledy by simple diffusion:
 \begin{equation}
-\dot{M} = D S \frac{1}{\delta}
+\dot{M} = \frac{D S}{2 \sqrt{\pi} \delta}
 \end{equation}
 where D is the diffusivity,
 $S$ is the surface area, and 
@@ -94,7 +94,7 @@ S = C_5 \lambda h + C_6 \lambda^2
 \end{equation}
 Togther, this yields:
 \begin{equation}
-\dot{M} = \frac{1}{\sqrt{\pi}} D (C_5 \lambda h + C_6 \lambda^2)^2 \frac{1}{M}.
+\dot{M} = \frac{1}{2 \pi} D (C_5 \lambda h + C_6 \lambda^2)^2 \frac{1}{M}.
 \end{equation}
 Finally, we couple to the dynamic equation by relating the mixed fluid to the dynamic Atwood number:
 \begin{equation} \elabel{effective-atwood}
@@ -110,7 +110,7 @@ which simplifes:
 \end{equation}
 where $\text{Sc} = \nu / D$ is the Schmidt number.
 
-\subsection{Limits}
+\subsection{Coefficient constraints}
 First, consider the limit where $D = 0$, $\nu = 0$, and $h \rightarrow 0$.
 The dynamical equation becomes
 \begin{equation}
@@ -135,23 +135,66 @@ Plugging in \eref{c3}, we see that
 C_6 = 1
 \end{equation}
 
-Finally, we consider the limit when $h \rightarrow \infty$ and $D = 0$:
+\subsection{Coefficient estimation}
+
+The parameter $C_1$ scales the form drag and serves as a drag coefficient.  
+Because we have let $C_0 = 1$, the hydralic diameter of the bubble is roughly $\lambda$.
+Had we let $C_0 = 1/4$, the diameter would be the more common $\lambda/2$, but many of the parameters would be fractional.
+Now, we relate $C_1$ to the drag coefficient $C_d$ in the drag equation:
+\begin{equation}
+C_1 \lambda^2 \dot{h}^2 = \frac{1}{2} C_d A \dot{h}^2
+\end{equation}
+so $C_1$ can be estimated using drag coefficients of similar objects:
+\begin{equation}
+C_1 = \frac{C_d}{2} \frac{A}{\lambda^2}.
+\end{equation}
+Initially, the bubble tip is a flat plate, which has $C_d = 1.28$.
+At late times, the bubble is closer to an elongated cylinder, which has $C_d = 0.82$, but with a somewhat streamlined tip, which further reduces drag.
+We expect $C_1 < .64$, but possibly much smaller if the bubble takes a streamlined shape.
+
+Next, Consider the limit when $h \rightarrow \infty$ and $D = 0$:
 The dynamical equation becomes
 \begin{equation}
 \ddot{h} = \frac{A g - C_2 \nu (1/\lambda) \dot{h}}{C_3}
 \end{equation}
 which leads to a terminal velocity of:
 \begin{equation}
-\dot{h} = \frac{A g}{C_2 \nu},
+\dot{h} = \frac{A g \lambda^2 }{C_2 \nu},
 \end{equation}
 or a non-dimensional velocity, i.e. Froude number:
 \begin{equation}
 \text{Fr} = \frac{d z}{d \tau} = \frac{\sqrt{\text{Gr}}}{C_2}.
 \end{equation}
 The case of extended bubbles and spikes affected only by viscous drag is highly analogous to flow through a square duct.
-Therefore, we can use solutions for Poissile flow to estimate $\dot{h}$ and add an approximate constraint on $C_2$.
-At the least, this will serve as a good starting guess for $C_2$ for parameter optimization.
+The pressure drop, $\Delta p$, along a duct is given by the Darcey-Weisbach formula:
+\begin{equation}
+\Delta p = \frac{f_D}{2} \frac{v^2 L}{d},
+\end{equation}
+where $L$ is the length of the duct,
+$v$ is the mean velocity,
+$d$ is the hydraulic diameter,
+and $f_D$ is the Darcy friction factor.
+In our case, $L = h$, $v = \dot{h}$, and $\Delta p = A g h$, so:
+\begin{equation}
+A g = \frac{f_D}{2} \frac{\dot{h}^2}{d},
+\end{equation}
+For laminar flows in circular pipes, $f_D = \bar{f}_D = 64 / \text{Re}$, so:
+\begin{equation}
+A g = \frac{f_D}{\bar{f}_D} 32 \nu \frac{\dot{h}}{d^2}.
+\end{equation}
+The hydraulic diameter $d = \lambda / 2$, so:
+\begin{equation}
+\dot{h} = \frac{\bar{f}_D}{f_D} \frac{A g \lambda^2}{128 \nu} .
+\end{equation}
+This gives an estimate for $C_2$:
+\begin{equation}
+C_2 \approx 128 \frac{f_D}{\bar{f}_D},
+\end{equation}
+where the ratio $f_D / \bar{f}_D$ is affected by the geometry and departure from laminar flow.
+For example, for square ducts $f_D/\bar{f}_D \approx 0.889$, so $C_2 \approx 114.$. 
 
+The product of the coefficient $C_5$ and $\lambda h$ gives the interfacial area of the side of the bubble.
+If the bubbles were smooth and cylindrical, then $C_5 = \pi$
 \begin{comment}
 Next, consider the limit where $D = 0$ and $h \rightarrow 0$.
 The dynamical equation becomes:
