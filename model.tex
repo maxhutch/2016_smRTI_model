@@ -77,6 +77,63 @@ However, the interfacial mixing continues to grow with the interfacial area, whi
 Therefore, for any finite diffusivity, the bubble will ultimately diffuse away.
 For this reason, we must include the effects of interficial mixing, at least to the first order.
 
+The quantity of mixed fluid, $M$ is computed directly from the time, bubble height, diffusivity, and initial interface thicnkess.
+The quantity of mixed fluid is defined as the integral of the absolute value of the scalar:
+\begin{equation}
+M(t) = \int \text{abs}\left[\phi(x,y,z,t)\right] dV,
+\end{equation}
+where we assume the mean scalar is zero, $\int \phi dV = 0$.
+
+We approximate the volume integral by a 1D integral across the interface multiplied by the surface area:
+\begin{equation}
+M(t) \approx S \int \text{abs}\left[\phi_1(r)\right] dr
+\end{equation}
+where $S$ is the surface area and
+$\phi_1$ is a model 1D scalar profile:
+\begin{equation}
+\phi_1(r) = \erf\left[\frac{r}{\delta}\right] - \erf\left[\frac{r - d}{\delta}\right] - 1,
+\end{equation}
+where $\delta$ is the interface width and
+$d$ is the diameter of the bubble.
+We perform the integral through the bubble:
+\begin{equation}
+\int_0^d \text{abs}\left[\phi_1(r)\right] dr = \frac{2 \delta}{\sqrt{\pi}} \left( 1 - \exp\left[-\frac{d^2}{\delta^2}\right]\right) + 2 d \left(1 - \erf\left[\frac{d}{\delta}\right]\right)
+\end{equation}
+We relate the diameter to the wavelength with an undertermined parameter: $d = C_5 \lambda$.
+
+The interface width is modeled by simple 1D diffusion:
+\begin{equation}
+\delta(t) = 2 \sqrt{D (t + t_0)},
+\end{equation}
+where $t_0$ is chosen to match $\delta(0)$ to the initial condition.
+
+The surface area has contributions from the bubble tip and side walls:
+\begin{equation}
+S = C_6 \left( \lambda^2 + 4 C_5 \pi \lambda h\right)
+\end{equation}
+where $C_6$ is an overall scale factor and $C_5$ balances the tip and side terms.
+The 4 comes from the presense of two bubbles per wavelength.
+
+The mixed mass must still be connected to the dynamics equation via the Atwood number:
+\begin{equation}
+A = A_0 \left( 1 - \frac{M}{V}\right),
+\end{equation}
+where $A_0$ is `pure` Atwood number and
+$V$ is the volume of the bubble.
+As in the dynamics equation, we define the volume as a mixture of $\lambda^3$ and $\lambda^2 h$:
+\begin{equation}
+V = C_8 \left( \lambda^3 + C_7 \lambda^2 h\right)
+\end{equation}
+
+The coefficients $C_6$ and $C_8$ are redundent for computing the Atwood number and, consequently, the dynamics.
+However, the quantity of mixed mass $M$ is directly available to numerical experiments.
+Therefore, we re-define 
+\begin{equation}
+V = C_6 C_8 \left( \lambda^3 + C_7 \lambda^2 h\right)
+\end{equation}
+so $C_8$ captures the ratio of the surface area terms in the numerator to the volume terms in the denominator and $C_6$ simply sets the scale of $M$ compared to experiments.
+
+\begin{comment}
 The quantitiy of mixed fluid $M$ is modeledy by simple diffusion:
 \begin{equation}
 \dot{M} = \frac{D S}{2 \sqrt{\pi} \delta}
@@ -109,6 +166,8 @@ which simplifes:
 \dot{m} = \frac{1}{\text{Sc} \sqrt{\pi \text{Gr}}} \left(C_5 z + C_6\right)^2 \frac{1}{m},
 \end{equation}
 where $\text{Sc} = \nu / D$ is the Schmidt number.
+
+\end{comment}
 
 \subsection{Coefficient constraints}
 First, consider the limit where $D = 0$, $\nu = 0$, and $h \rightarrow 0$.

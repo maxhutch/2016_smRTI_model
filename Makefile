@@ -14,4 +14,5 @@ main:
 	mkdir -p tmp
 	if [ -f ${TARGET}-pp.bbl ]; then mv ${TARGET}-pp.bbl tmp; fi
 	mv ${TARGET}_inline.tex ${TARGET}-pp.tex tmp
+	cp ${TARGET}.pdf ~/Downloads/smRTI_model.pdf
 
