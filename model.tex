@@ -86,7 +86,7 @@ where we assume the mean scalar is zero, $\int \phi dV = 0$.
 
 We approximate the volume integral by a 1D integral across the interface multiplied by the surface area:
 \begin{equation}
-M(t) \approx S \int \text{abs}\left[\phi_1(r)\right] dr
+M(t) \approx S \int 1- \text{abs}\left[\phi_1(r)\right] dr
 \end{equation}
 where $S$ is the surface area and
 $\phi_1$ is a model 1D scalar profile:
@@ -99,7 +99,7 @@ We perform the integral through the bubble:
 \begin{equation}
 \int_0^d 1- \text{abs}\left[\phi_1(r)\right] dr = \frac{2 \delta}{\sqrt{\pi}} \left( 1 - \exp\left[-\frac{d^2}{\delta^2}\right]\right) + 2 d \left(1 - \erf\left[\frac{d}{\delta}\right]\right)
 \end{equation}
-We relate the diameter to the wavelength with an undertermined parameter: $d = C_5 \lambda$.
+We relate the diameter to the wavelength : $d = \lambda / 2$.
 
 The interface width is modeled by simple 1D diffusion:
 \begin{equation}
@@ -109,10 +109,9 @@ where $t_0$ is chosen to match $\delta(0)$ to the initial condition.
 
 The surface area has contributions from the bubble tip and side walls:
 \begin{equation}
-S = \left( \lambda^2 + 4 C_5 \pi \lambda h\right)
+S = \left(C_6 \lambda^2 + C_5 \lambda h\right)
 \end{equation}
-where $C_6$ is an overall scale factor and $C_5$ balances the tip and side terms.
-The 4 comes from the presense of two bubbles per wavelength.
+where $C_5$ and $C_6$ are unknown coefficients.
 
 The mixed mass must still be connected to the dynamics equation via the Atwood number:
 \begin{equation}
@@ -122,16 +121,12 @@ where $A_0$ is `pure` Atwood number and
 $V$ is the volume of the bubble.
 As in the dynamics equation, we define the volume as a mixture of $\lambda^3$ and $\lambda^2 h$:
 \begin{equation}
-V = \left( C_8 \lambda^3 + C_7 \lambda^2 h\right)
+V = \left(C_8 \lambda^3 + C_7 \lambda^2 h\right),
 \end{equation}
+where $C_7$ and $C_8$ scale the volume analogously to $C_5$ and $C_6$.
 
-The coefficients $C_6$ and $C_8$ are redundent for computing the Atwood number and, consequently, the dynamics.
-However, the quantity of mixed mass $M$ is directly available to numerical experiments.
-Therefore, we re-define 
-\begin{equation}
-V = C_6 C_8 \left( \lambda^3 + C_7 \lambda^2 h\right)
-\end{equation}
-so $C_8$ captures the ratio of the surface area terms in the numerator to the volume terms in the denominator and $C_6$ simply sets the scale of $M$ compared to experiments.
+Unlike in the dynmics, when coefficient could be discarded without loss of generality, all four of $C_5, C_6, C_7$ and $C_8$ are nessesary because the absolute value of $M \propto (C_5, C_6)$ can be measured directly.
+Therefore, an overall scale factor can not be removed.
 
 \begin{comment}
 The quantitiy of mixed fluid $M$ is modeledy by simple diffusion:
