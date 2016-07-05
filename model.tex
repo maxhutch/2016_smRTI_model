@@ -114,7 +114,7 @@ S = \left(C_6 \lambda^2 + C_5 \lambda h\right)
 where $C_5$ and $C_6$ are unknown coefficients.
 
 The mixed mass must still be connected to the dynamics equation via the Atwood number:
-\begin{equation}
+\begin{equation} \elabel{effective-atwood}
 A = A_0 \left( 1 - \frac{M}{V}\right),
 \end{equation}
 where $A_0$ is `pure` Atwood number and
@@ -175,6 +175,13 @@ which matches Rayleigh's original linear stability analysis if
 C_4 = 1/(2 \pi).
 \end{equation}
 
+Next consider the initial quantity of mixed mass for small sharp interfaces, $\delta(0), a_0 \rightarrow 0$.
+We assume the initial condition is an error function profile:
+\begin{equation}
+M(t=0) = \lambda^2 \int_{-\infty}{\infty} \text{erf}\left[\frac{z}{\delta}\right] = \frac{2 \delta}{\sqrt{pi}} = \frac{2 \delta C_6}{\sqrt{pi}},
+\end{equation}
+which implies that $C_6 = 1$.
+
 Next, consider the limit when $\delta \rightarrow 0 $ and $h \rightarrow 0$.
 In the linear theory, the Atwood number is rescaled:
 \begin{equation}
@@ -182,12 +189,9 @@ A = \frac{A_0}{1 + \pi^{-1/2} k \delta} \approx A_0 \left(1 - \frac{k \delta}{\s
 \end{equation}
 We equate this to \eref{effective-atwood}:
 \begin{equation}
-\frac{2 \pi \delta}{\lambda \sqrt{\pi}} = \frac{\delta}{\sqrt{\pi}} C_6 \lambda^2 \frac{1}{C_3 \lambda^3}
+\frac{2 \pi \delta}{\lambda \sqrt{\pi}} = \frac{2 \delta}{\sqrt{\pi} \lambda} \frac{C_6 }{C_8},
 \end{equation}
-Plugging in \eref{c3}, we see that
-\begin{equation} \elabel{c6}
-C_6 = 1
-\end{equation}
+which implies that $C_8 = \pi^{-1}$.
 
 \subsection{Coefficient estimation}
 
