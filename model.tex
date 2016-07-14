@@ -95,11 +95,21 @@ $\phi_1$ is a model 1D scalar profile:
 \end{equation}
 where $\delta$ is the interface width and
 $d$ is the diameter of the bubble.
-We perform the integral through the bubble:
+
+The surface area has contributions from the bubble tip and side walls:
 \begin{equation}
-\int_0^d 1- \text{abs}\left[\phi_1(r)\right] dr = \frac{2 \delta}{\sqrt{\pi}} \left( 1 - \exp\left[-\frac{d^2}{\delta^2}\right]\right) + 2 d \left(1 - \erf\left[\frac{d}{\delta}\right]\right)
+S = \left(C_6 \lambda^2 + C_5 \lambda h\right)
 \end{equation}
-We relate the diameter to the wavelength : $d = \lambda / 2$.
+where $C_5$ and $C_6$ are unknown coefficients.
+$C_5$ scales the perimeter of span-wise slices of the bubble while $C_6$ rescales bubble tip.
+
+To the first order, the diameter is half the wavelength: $d \approx \lambda / 2$.
+However, the cylindrical bubbles do not always fill the span-wise domain.
+This can be seen by values of $C_5$ that are below $4$, the value corresponding to space-filling rectangular bubbles.
+Therefore, we adjust the diameter using $C_5$:
+\begin{equation}
+d = \frac{\lambda}{2} \frac{C_5}{4}
+\end{equation}
 
 The interface width is modeled by simple 1D diffusion:
 \begin{equation}
@@ -107,11 +117,14 @@ The interface width is modeled by simple 1D diffusion:
 \end{equation}
 where $t_0$ is chosen to match $\delta(0)$ to the initial condition.
 
-The surface area has contributions from the bubble tip and side walls:
+We perform the integral through the bubble:
 \begin{equation}
-S = \left(C_6 \lambda^2 + C_5 \lambda h\right)
+\begin{split}
+\int_0^d 1- \left|\phi_1(r)\right| dr &= \frac{2 \delta}{\sqrt{\pi}} \left( 1 - \exp\left[-\frac{d^2}{\delta^2}\right]\right) \\
+&+ 2 d \left(1 - \erf\left[\frac{d}{\delta}\right]\right).
+\end{split}
 \end{equation}
-where $C_5$ and $C_6$ are unknown coefficients.
+
 
 The mixed mass must still be connected to the dynamics equation via the Atwood number:
 \begin{equation} \elabel{effective-atwood}
@@ -178,7 +191,7 @@ C_4 = 1/(2 \pi).
 Next consider the initial quantity of mixed mass for small sharp interfaces, $\delta(0), a_0 \rightarrow 0$.
 We assume the initial condition is an error function profile:
 \begin{equation}
-M(t=0) = \lambda^2 \int_{-\infty}{\infty} \text{erf}\left[\frac{z}{\delta}\right] = \frac{2 \delta}{\sqrt{pi}} = \frac{2 \delta C_6}{\sqrt{pi}},
+M(t=0) = \lambda^2 \int_{-\infty}^{\infty} \text{erf}\left[\frac{z}{\delta}\right] = \frac{2 \delta}{\sqrt{\pi}} = \frac{2 \delta C_6}{\sqrt{\pi}},
 \end{equation}
 which implies that $C_6 = 1$.
 
@@ -189,7 +202,7 @@ A = \frac{A_0}{1 + \pi^{-1/2} k \delta} \approx A_0 \left(1 - \frac{k \delta}{\s
 \end{equation}
 We equate this to \eref{effective-atwood}:
 \begin{equation}
-\frac{2 \pi \delta}{\lambda \sqrt{\pi}} = \frac{2 \delta}{\sqrt{\pi} \lambda} \frac{C_6 }{C_8},
+\frac{2 \pi \delta}{\lambda \sqrt{\pi}} = \frac{C_6 }{C_8}\frac{2 \delta}{\lambda \sqrt{\pi} } ,
 \end{equation}
 which implies that $C_8 = \pi^{-1}$.
 
