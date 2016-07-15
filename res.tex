@@ -11,17 +11,17 @@
 
 The numerical experiments sample the mapping from Grashof and Schmidt number to bubble height trajectory
 \begin{equation*}
-\left(\text{Gr}, \text{Sc}\right) \rightarrow H(t)
+\left(\text{Gr}, \text{Sc}\right) \rightarrow \left(H(t), M(t)\right)
 \end{equation*}
 Each trajectory is fit to the buoyancy-drag model presented in \sref{model}, constrained by \eref{c4} and \eref{c6}, resulting in the following 4-parameter model:
 \begin{align}
 \ddot{h} &= \frac{A g h - C_1 \dot{h}^2 - C_2 \nu (h/\lambda^2) \dot{h}}{ C_3 h + \lambda/(2\pi) } \\
-A &= A_0 \left[ 1 - \frac{M}{C_3 \lambda^2 h  + \lambda^3 / (2\pi)} \right]  \\
-\dot{M} &= \frac{D \left[C_5 \lambda h + \lambda^2\right] ^2}{M \sqrt{\pi}} .
+A &= A_0 \left[ 1 - \frac{m}{C_3 \lambda^2 h  + \lambda^3 / (2\pi)} \right]  \\
+\dot{m} &= \frac{D \left[C_5 \lambda h + \lambda^2\right] ^2}{m \sqrt{\pi}} .
 \end{align}
 The results of the fit are a mapping from Grashof and Schmidt number to fit coefficients and root mean square error:
 \begin{equation}
-\left(\text{Gr}, \text{Sc}\right) \rightarrow \left(C_1, C_2, C_3, C_5, || H - h ||_2\right) 
+\left(\text{Gr}, \text{Sc}\right) \rightarrow \left(C_1, C_2, C_3, C_5, || H - h ||_2, || M - m ||_2\right) 
 \end{equation}
 
 The values of the fit coefficieints, their dependence on the Grashof and Schmidt numbers, and their ability to accurately model the trajectory are the basis for the following analyses.

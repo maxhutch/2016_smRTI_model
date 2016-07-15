@@ -1,23 +1,49 @@
 \section{Conclusions}
 
+% We proposed a model
 We have proposed a simple ODE model for the growth of single mode Rayleigh-Taylor bubbles and spikes at low Atwood number.
-The model targets an intermediate range of Reynolds numbers and high Peclet number, in which the single mode pertubration grows into an array of coherent bubbles and spikes.
-The dynamics of the bubbles are described by a force balance between bouyancy, viscous drag, and form drag.
+The model targets an intermediate range of Reynolds numbers and high Peclet numbers, in which the single mode pertubration grows into an array of coherent bubbles and spikes.
+The dynamics of the bubbles are described in terms of bouyancy, viscous drag, and form drag.
 The buoyant force is scaled by a mixing factor related to the volume faction of mixed fluid within the bubble, which is modeled by diffusion across the bubble's interface.
 
+% Viscosity sets the only terminal length scale
 The viscous drag, which is absent in other buoyancy-drag models, is essential to recovering terminal behavior at high aspect ratios and low diffusivities.  
 Without viscous drag or mixing, the buoyant force grows with the aspect ratio while the form drag does not, leading to unbounded bubble velocity.
-In practice, as the velocity grows, the bubble interface breaks up leading to enhanced turbulent mixing.
+In practice, as the velocity grows at high Reynolds number, the bubble interface breaks up leading to enhanced turbulent mixing.
+At moderate Reynolds number, viscosity bounds the bubble velocity, generally above the bound given by potential flow theories.
 
-The ODE has 6 parameters, 3 of which can be constrained by limiting cases.
-The immiscible linear theory, miscibile linear theory, and Poissile flow limits provide constraints.
-The three remaining parameters lend themselves to physical interpretation, providing a guideline for their value.
+% Mixing kills all bubbles
+Mixing reduces buoyant force until the bubble stops rising.
 
-To validate the simple model under its three constraints, we perform a battery of direct numerical simulations at moderate Reynolds number, high Peclet number, and high aspect ratio.
-The simulations provide trajectories for the bubble height and volume of mixed fluid, which are directly compared to the results of the simple model.
-Unconstrained, the model is able to reproduce the non-dimensional bubble height to one part in ???.
-Constrained by the three limiting cases, the error increases to ???.
-This demonstrates the compatibility of the constraints with the model.
+% Stagnation/reacceleration is a transient
+The model proposed here is unable to describe stagnation and reacceleration seen at higher Grashof numbers.
+However, the model is very accurate both before and after stagnation and reacceleration, respectively.
+This demonstrates stagnation and reacceleration to be transients in the flow, and suggests that the physical processes that lead to them are initially absent, grow to some critical extent, and then decay relative to the magnitude of other processes.
+The bubble tip vortex ring is a strong candidate, as suggested by many others.
+The model could be extended to account for the build-up of vorticity at the bubble tip.
 
+% We can constrain 3 model parameters
+The proposed model has 8 descriptive parameters, 3 of which can be constrained by limiting cases.
+
+% We can estimate the reamining 5
+The physical interpretation of the five remaining parameters provides a prior for their value.
+Those parameters are similar to a drag coefficent, a friction factor, and three geometric ratios.
+
+% The parameters are fit to DNS
+To calculate the 5 unconstrained model parameters, we fit the model to a battery of direct numerical simulations at moderate Reynolds number, high Peclet number, and high aspect ratio.
+The simulations provide trajectories for the bubble height and volume of mixed fluid.
+The single mixing parameter is fit directly to mixed fluid measurements from numerical simulations.
+The remaining four parameters are fit with L2 regularization around the prior estimates.
+The resulting model reproduces simulated trajectories with relative errors in the bubble height from ??? to ??? and in the volume of mixed fluid from ??? to ???
+
+% Certain parameters depend on the Grashof number
+
+% Other parameters depend on the Rayleigh number
+
+% Some just depend on the diffusivity
+
+% We can't explain all the parameter behavior
+
+% This is just a start
 While the simple model is sufficient to describe coherent, steady bubbles and spikes at low Atwood numbers and high Peclet numbers, few real flows fall within this regime.
 In this regard, the simple model proposed here is best seen as a starting point for extensions to more realistic flows.
