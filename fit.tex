@@ -1,6 +1,28 @@
 \section{Model fit parameters}
 
-\renewcommand{\fittol}[0]{0.01~}
+\subsection{Fitting}
+
+The model is integrated using the variable-coefficient ordinary differential equation solver for stiff systems.
+The model error is computed as the root mean square error between the integrated model and the numerical values for the bubble height.
+Simple regression is the reduction of the model error.
+
+However, the high Rayleigh trajectories are incomplete, leading to underconstrained systems.
+Therefore, we regularize the fit by adding a term to the model error:
+\begin{equation}
+R = \beta \left| \left| \frac{C - \bar{C}}{\bar{C}} \right| \right|_2,
+\end{equation}
+where $\beta$ is the regularization parameter,
+$C$ is the vector of model coefficients, and
+$\bar{C}$ are the coefficient estimates.
+$\beta = 0.01$ is chosen to be an order smaller than the typical model error.
+Although the buoyancy-drag model is non-linear, this regularization can be thought of as a Tikhonov regularization or Ridge Regression.
+
+The non-linear global minimization problem is solved with the covariance matrix adaptation evolution strategy (CMA-ES).
+CMA-ES iteratively refines a sample distribution that evolves towards the global optimum.
+Computing the model error is very inexpensive compared to the simulations, so we choose a broad initial distribution with a large population size.
+The stocastic solution is polished with a sequential least-squares local minimization.
+
+
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{figs/H-0.0016-0.0002.eps}
@@ -61,7 +83,6 @@ Then, the estimates are used as the starting point for fitting, that is minimiza
 \includegraphics[width=\columnwidth]{figs/C1-vs-Grashof-Schmidt}
 \caption{ \flabel{C1VsParam}
   Best fit for $C_1$ vs Grashof and Schmidt numbers.
-  Cases for which the relative model error exceeds \fittol are excluded.
 }
 \end{figure}
 
@@ -85,7 +106,6 @@ $C_1$ increases with Grashof and Schmidt number.
 \includegraphics[width=\columnwidth]{figs/C2-vs-Grashof-Schmidt}
 \caption{ \flabel{C2VsParam}
   Best fit for $C_2$ vs Grashof and Schmidt numbers.
-  Cases for which the relative model error exceeds \fittol are excluded.
 }
 \end{figure}
 
@@ -104,7 +124,6 @@ A g h = \frac{8 \nu h v}{r^2}
 \includegraphics[width=\columnwidth]{figs/C3-vs-Grashof-Schmidt}
 \caption{ \flabel{C3VsParam}
   Best fit for $C_3$ vs Grashof and Schmidt numbers.
-  Cases for which the relative model error exceeds \fittol are excluded.
 }
 \end{figure}
 
@@ -118,7 +137,6 @@ In other words, entrainment of non-buoyant fluid at the head and tail of the bub
 \includegraphics[width=\columnwidth]{figs/C5-vs-Grashof-Schmidt}
 \caption{ \flabel{C5VsParam}
   Best fit for $C_5$ vs Grashof and Schmidt numbers.
-  Cases for which the relative model error exceeds \fittol are excluded.
 }
 \end{figure}
 
