@@ -1,6 +1,10 @@
 \section{Numerical experiments}
 
-To evaluate the simple model of \sref{model}, we conduct a battery of direct numerical simulations of the imcompressible Navier-Stokes equations with the Boussinesq approximation:
+To evaluate the simple model of \sref{model}, we conduct a battery of direct numerical simulations.
+The novel components of the simple model, i.e. viscous drag and mixing, are most pronounced at late times.
+We primarily direct our effort at simulating higher aspect ratio domains to allow the bubble to reach a dissapative regime.
+
+The numerical experiments simulate the imcompressible Navier-Stokes equations with the Boussinesq approximation:
 \begin{align}
 \frac{\partial u}{\partial t} + u \cdot \nabla u &= \nu \nabla^2 u - \nabla P + A g \phi \\
 \frac{\partial \phi}{\partial t} + u \cdot \nabla \phi &= D \nabla^2 \phi 
@@ -28,6 +32,11 @@ For this reason, the root of the Grashof number is sometimes called the \textit{
 \text{Re}_p = \sqrt{\frac{A g \lambda^3}{\nu^2}}
 \end{equation}
 
+The domain is $\left[0.5, 0.5, 64\right]$ and rotated 45 degrees to model $\lambda = \sqrt{2}$ with symmetric span-wise boundaries.
+The length of the domain is $64/\sqrt{2} \approx 45.2$ wavelengths with no-slip walls at the top and bottom.
+Based on a previous validation of the smRTI with no-slip boundaries, we expect the bubble to be unaffected by the top and bottom walls until it reaches 75\% of the height, or about $17\lambda$.
+This provides significantly more data than the $h < 4 \lambda$ results of Ramaprabhu \etal~\cite{Ramaprabhu2012}.
+
 The model introduced in \sref{model} assumes the bubbles and spikes are coherent structures, that is they travel at some velocity and have a well defined interface.
 As the Grashof number increases and the bubbles and spikes break up, departing from the assumptions of the model.
 On the other hand, at low Grashof number and finite diffusivity, diffusion moves the $\phi = 0$ interface, as opposed to simply transporting the scalar across it, which also departs from the model assumptions.
@@ -47,7 +56,7 @@ The the resolution parameters; the number of spectral elements, the order of the
 \begin{figure}
 \includegraphics[width=\columnwidth]{figs/swp_Sc_1.0_nu_8.0-t_max_z-0256.eps}
 \includegraphics[width=\columnwidth]{figs/swp_Sc_1.0_nu_8.0-t_proj_z-0256.eps}
-\caption{
+\caption{\flabel{profiles}
   Spanwise max and mean of scalar field.
 }
 \end{figure}
@@ -56,17 +65,33 @@ The the resolution parameters; the number of spectral elements, the order of the
 \includegraphics[width=\columnwidth]{figs/comp-height-0.0008-0.0002.eps}
 \includegraphics[width=\columnwidth]{figs/comp-height-0.0008-0.0004.eps}
 \includegraphics[width=\columnwidth]{figs/comp-height-0.0008-0.0008.eps}
-\caption{
+\caption{ \flabel{heights}
   Comparison of height metrics at $\text{Gr} = ???$ and $\text{Sc} = \{2, 4, 8\}$.
 }
 \end{figure}
 
+The output frames are post-processed, extrating 0, 1, and 2D projections of a variety of quantities along the axis, midplane, bubble cross section, etc.
+
+
 \paragraph{Bubble height}
-We extract the span-wise minimum, maximum, and mean scalar values.
-We are considering the miscible RTI, so the shape of the profiles is due to a combination of advection in the bubble and diffusion across the interface.
-We can assume an error function-like profile across the interface at the bubble tip, but diffusion across the bubble sidewalls results in a linear profile.
-To separate the definition of the bubble tip from the decreasing effective Atwood number, we introduce a new definition: the bubble tip is defined as the inflection point in the span-wise maximum scalar profile.
+For miscible RTI, the shape of the profiles is due to a combination of advection in the bubble and diffusion across the interface.
+We can assume an error function-like profile across the interface at the bubble tip, but diffusion across the bubble sidewalls results in a linear profile in both the span-wise mean and maximum.
+To separate the definition of the bubble tip from the effect of decreasing effective Atwood number, we introduce a new definition: the bubble tip is defined as the inflection point in the span-wise maximum scalar profile.
+For the symmetric case, this span-wise maximum of the scalar is equivalent to the value along the bubble axis.
+At early times, the profile is an error function that broadens with diffusion and advects with the bubble velocity.
+At late times, the $\phi > 0$ side of the error function decays into a nearly linear profile, as seen in \fref{profiles}.
+However, the profile remains sharp near the bubble tip, decoupling the position of the inflection point from the sidewall mixing.
+
+This definition of the bubble height is compared to two more traditional definitions, based on a cutoff in the mean or maximum profiles, in \fref{heights}.
+At early times, the definition based on the mean profile grows diffusively.
+At late times, the definition based on the max profile kinks as the linear part of the profile crosses zero and then stagnates.
+The defintion based on the inflection avoids both breakdowns while closely tracking each other definition in its valid range.
 
 \paragraph{Mixed volume}
 
+The scalar is normalized such that $\phi \in \left[-1, 1\right]$ and the average $\bar\phi = 0$.
+The purity of the fluid is therefore $\left| \phi \right|$ and the volume of mixed fluid is given by a simple integral:
+\begin{equation}
+M(t) = \int \left( 1 - \left| \phi(x,y,z) \right|\right) dV
+\end{equation}
 
