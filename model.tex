@@ -180,13 +180,27 @@ where $\text{Sc} = \nu / D$ is the Schmidt number.
 \subsection{Coefficient constraints}
 First, consider the limit where $D = 0$, $\nu = 0$, and $h \rightarrow 0$.
 The dynamical equation becomes
-\begin{equation}
-\ddot{h} = \frac{A g }{C_4 \lambda} h
+\begin{equation} \elabel{first_constraint}
+\ddot{h} = \frac{A g }{C_4 \lambda} h,
 \end{equation}
 which matches Rayleigh's original linear stability analysis if 
-\begin{equation} \elabel{c4}
+\begin{equation} 
 C_4 = 1/(2 \pi).
 \end{equation}
+When $\nu > 0$, the growth rate $\ddot{h}$ is given by Duff's linear theory:
+\begin{equation}
+\ddot{h} = \left(\sqrt{A g k + \nu^2 k^4} - \nu k^2\right)^2 h,
+\end{equation}
+where $k = 2\pi / \lambda$ is the wavenumber.
+Setting this equal to \eref{first_constraint} yields:
+\begin{equation} \elabel{c4}
+C_4 = \frac{1 + 2x\left(\sqrt{1 + x^2} + x\right)}{2\pi},
+\end{equation}
+where:
+\begin{equation}
+x = \sqrt{\frac{8 \pi^3 \nu^2}{A g \lambda^3}} = \sqrt{\frac{(2 \pi)^3}{\text{Gr}}}
+\end{equation}
+and Gr is the Grashof number.
 
 Next consider the initial quantity of mixed mass for small sharp interfaces, $\delta(0), a_0 \rightarrow 0$.
 We assume the initial condition is an error function profile:
