@@ -187,6 +187,7 @@ which matches Rayleigh's original linear stability analysis if
 \begin{equation} 
 C_4 = 1/(2 \pi).
 \end{equation}
+
 When $\nu > 0$, the growth rate $\ddot{h}$ is given by Duff's linear theory:
 \begin{equation}
 \ddot{h} = \left(\sqrt{A g k + \nu^2 k^4} - \nu k^2\right)^2 h,
@@ -212,13 +213,25 @@ which implies that $C_6 = 1$.
 Next, consider the limit when $\delta \rightarrow 0 $ and $h \rightarrow 0$.
 In the linear theory, the Atwood number is rescaled:
 \begin{equation}
-A = \frac{A_0}{1 + \pi^{-1/2} k \delta} \approx A_0 \left(1 - \frac{k \delta}{\sqrt{\pi}}\right)
+A = \frac{A_0}{1 + \pi^{-1/2} k \delta} = A_0 \left(1 - \frac{k \delta}{\sqrt{\pi} + k \delta}\right)
 \end{equation}
 We equate this to \eref{effective-atwood}:
 \begin{equation}
-\frac{2 \pi \delta}{\lambda \sqrt{\pi}} = \frac{C_6 }{C_8}\frac{2 \delta}{\lambda \sqrt{\pi} } ,
+\frac{2 \pi \delta}{\lambda (\sqrt{\pi} + 2 \pi \delta / \lambda)} = \frac{C_6 }{C_8}\frac{2 \delta}{\lambda \sqrt{\pi} },
 \end{equation}
-which implies that $C_8 = \pi^{-1}$.
+or
+\begin{equation}
+\frac{C_6}{C_8} = \frac{\pi \sqrt{\pi}}{\sqrt{\pi} + 2 \pi \delta / \lambda}.
+\end{equation}
+The variable $\delta$ is associated with the mixing model, not the dynamics, so it would be convenient to have $C_8$ independent of $\delta$.
+We've defined $C_6 = 1$ in the limit of $\delta(0), a_0 \rightarrow 0$, so we can add a term that goes to zero at $\delta = 0$:
+\begin{equation}
+C_6 = \frac{1}{1 + 2 \sqrt{\pi} \delta / \lambda},
+\end{equation}
+which constrains:
+\begin{equation}
+C_8 = \frac{1}{\pi}
+\end{equation}
 
 \subsection{Coefficient estimation}
 
