@@ -2,11 +2,11 @@
 
 The Rayleigh-Taylor instability has been the subject of considerable study since its characterization by Lord Rayleigh in the 19th century.
 Despite this, many aspects of the non-linear growth remain poorly understood.
-Analytic models based on potential flow have been reasonably effective for flows with a large density jump, i.e. Atwood number, $\Delta \rho / \sum \rho$, near unity.
-However, recent experiments at low Atwood number have demonstrated a significant departure from the potential flow limit.
-The Rayleigh-Taylor front can be seen accelerating past the terminal velocity predicted by potential flow models.
+Analytic models based on potential flow have been reasonably effective for flows with a large density jump, i.e. an Atwood number, $\Delta \rho / \sum \rho$, near unity.
+However, recent experiments at low Atwood number have demonstrated a significant departure from the potential flow limit:
+Rayleigh-Taylor bubbles are seen accelerating past the terminal velocity predicted by potential flow models.
 The acceleration persists beyond times which are experimentally accesible, so numerous efforts have been made to compute the late time flow numerically.
-Ultimately, the goal is to use these computational experiments to inform a simple model that captures the key features of the flow, as potential flow models do for high Atwood number flows.
+Ultimately, the goal is to use these numerical experiments to inform a simple model that captures the key features of the flow, as potential flow models do for high Atwood number flows.
 
 This study concerns the dynamics of the single-mode Rayleigh-Taylor instability (smRTI), where the interface between a heavy fluid and a light fluid is perturbed with a single wavelength $\lambda$ and corresponding wavenumber $k$.
 If the Atwood number is low, then at early times the interface grows exponentially with a rate given by a linear approximation:
@@ -18,16 +18,11 @@ $g$ is the local acceleration,
 $\delta$ is the interface thickness,
 $\nu$ is the kinematic viscosity, and
 $D$ is the diffusivity.
-
 As the amplitude approaches the wavelength, the linear growth saturates.
-At unit Atwood number, the non-linear regime is described by potential flow, which approaches a terminal velocity given by Layzer~\cite{Layzer1955}:
-\begin{equation}
-v_L = \sqrt{g \lambda}
-\end{equation}
-(check)
+At unit Atwood number, the non-linear regime is described by potential flow, in which Layzer found the interface approaches a terminal velocity proportional to the root of the acceleration and wavelength: $v_L \sim \sqrt{g \lambda}$~\cite{Layzer1955}:
 Potential flow models have been extended $A < 1$, with the most successful model by Goncharov~\cite{Goncharov2002}:
 \begin{equation}
-v_G = \sqrt{A g \lambda}
+v_G = \frac{1}{\sqrt{\pi}} \sqrt{\frac{A g \lambda}{1+A}}
 \end{equation}
 
 Experiments by Wilkinson and Jacobs show that after reaching the velocity given by \eref{goncharov}, low Atwood bubbles unexpectedly accelerate a second time.
