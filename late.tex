@@ -11,7 +11,8 @@
 \end{subfigure}
 \caption{ \flabel{high_Ra_traj}
 Bubble Froude number vs non-dimensional bubble height for $\text{Ra} = 10^{5.75}, \text{Sc} = 4$, simulation vs model with successive terms enabled.
-The dashed vertical lines divide the trajectory into four regimes: linear growth for $H/\lambda < .05$, saturation until $H / \lambda = 0.5$, stagnation and re-acceleration until $H / \lambda = 1.5$, and dissipation beyond that.
+The dashed vertical lines divide the trajectory into three regimes: linear growth for $H/\lambda < .05$, saturation until $H / \lambda \approx 8$, and viscosity beyond that.
+The stagnation and re-acceleration transients are seen begining at $H/\lambda = 0.5$ and ending by $H / \lambda = 1.5$.
 }
 \end{figure*}
 
@@ -26,7 +27,8 @@ The dashed vertical lines divide the trajectory into four regimes: linear growth
 \end{subfigure}
 \caption{ \flabel{low_Ra_traj}
 Bubble Froude number vs non-dimensional bubble height for $\text{Ra} = 10^{4.5}, \text{Sc} = 8$, simulation vs model with successive terms enabled.
-Dashed vertical lines divide the trajectory, as in \fref{high_Ra_traj}, but the saturation regime and stagnation and re-acceleration regime are suppressed by mixing.
+Dashed vertical lines divide the trajectory into four regimes: linear growth for $H/\lambda < 0.05$, saturation until $H / \lambda \approx 0.1$, viscosity until $H / \lambda \approx 1.3$, and diffusion beyond that.
+The stagnation and re-acceleration transients, seen in \fref{high_Ra_traj}, are suppressed by the viscous regime, which onsets before the transient begins at $H / \lambda = 0.5$.
 }
 \end{figure*}
 
@@ -91,11 +93,12 @@ Solving for $h/\lambda$ yields:
 where $h_\nu$ is the onset of the viscous regime.
 
 As in the saturation case, the particular definition of the onset is arbitrary.
-Here, we will define $h_\nu$ such that when $h_\nu/\lambda = 1$, the viscous velocity has the potential flow value: $v_\nu = \pi^{-1/2} \sqrt{A g \lambda}$.
+Here, we will define $h_\nu$ such that when $h_\nu/\lambda = 0.5$, the viscous velocity has the potential flow value: $v_\nu = \pi^{-1/2} \sqrt{A g \lambda}$.
 This works out to be:
-\begin{equation}
-\frac{h_\nu}{\lambda} = \frac{\pi}{C_2^2} \text{Gr} \approx 2.4 \times 10^{-4} \text{Gr}
+\begin{equation} \elabel{visc_height}
+\frac{h_\nu}{\lambda} = \frac{\pi}{4 C_2^2} \text{Gr} \approx 4.7 \times 10^{-5} \text{Gr},
 \end{equation}
+where we've let $C_2 = 128$, the nominal value from Poiseuille flow.
 
 \subsection{Diffusive regime}
 \begin{figure}
@@ -133,6 +136,17 @@ so the penetration depth should go linearly with the Rayleigh number.
 
 The penetration depth is plotted as a function of Rayleigh and Schmidt number in \fref{depth_scatter}, and, indeed, depends strongly on the Rayleigh number before being clipped by the top walls.
 Furthermore, the relationship to the Rayleigh number is linear over the cases shown here, as shown in \fref{depth_line}.
+
+We can use a similar analysis to define the onset of the diffusive regime when the interface width is a quarter wavelength, $\delta = \lambda / 8$, which is a quarter of the nominal bubble diameter.
+This results in a bubble height:
+\begin{equation} \elabel{diff_height}
+\frac{h_D}{\lambda} = \frac{1}{128 C_2} \text{Ra} \approx 6.1 \times 10^{-5} \text{Ra},
+\end{equation}
+where we've again let $C_2 = 128$.
+
+The ratio of the diffusive to viscous heights, \eref{diff_height} and \eref{visc_height}, respectively, is linear with the Schmidt number, or about $1.3 \text{Sc}$.
+For $\text{Sc} > 1$, the portion of the trajectory that is governed by viscosity alone increases with the Schmidt number.
+However, for $\text{Sc} < 1$ the diffusive regime dominates the viscous regime entirely.
 
 \subsection{Stagnation and re-acceleration}
 
