@@ -14,7 +14,7 @@ The mixing model defines the quantity of mixed fluid, $m(t)$, as an analytic fun
 \begin{equation}
 \left\{H(t), \delta(0), \lambda, D, C_5\right\} \rightarrow m(t),
 \end{equation}
-where $H(t)$ is the buble height, 
+where $H(t)$ is the bubble height, 
 $\delta(0)$ is the initial interface thickness,
 $\lambda$ is the wavelength,
 $D$ is the diffusivity, and 
@@ -37,7 +37,7 @@ $\delta(0)$ is the initial interface thickness,
 $\lambda$ is the wavelength,
 $\nu$ is the kinematic viscosity,
 $D$ is the diffusivity, and
-$C$ are the model cofficients.
+$C$ are the model coefficients.
 $\delta(0)$, $\lambda$, $\nu$, and $D$ are taken from the simulation while $C_5$ is taken from independently fitting the mixing model, allowing for the definition of a dynamics error:
 \begin{equation}
 E_d = \left| \left| h\left[C_1, C_2, C_3, C_7\right] - H(t)\right| \right|_2,
@@ -46,9 +46,9 @@ where $H(t)$ is the reference value from the numerical experiments.
 The non-linear global minimization problem is solved with the covariance matrix adaptation evolution strategy (CMA-ES).
 CMA-ES iteratively refines a sample distribution that evolves towards the global optimum.
 Computing the model error is very inexpensive compared to the simulations, so we choose a broad initial distribution with a large population size.
-The stocastic solution is polished with a sequential least-squares local minimization.
+The stochastic solution is polished with a sequential least-squares local minimization.
 
-However, the high Rayleigh trajectories are incomplete, in that the data ends when the bubble gets close to the top wall, leading to underconstrained systems.
+However, the high Rayleigh trajectories are incomplete, in that the data ends when the bubble gets close to the top wall, leading to under-constrained systems.
 Therefore, we regularize the fit by adding a term to the model error:
 \begin{equation}
 R = \beta \left| \left| \frac{C - \bar{C}}{\bar{C}} \right| \right|_2,
@@ -77,9 +77,9 @@ In highly viscous and diffusive cases, the bubbles may not reach late time highl
 For this analysis, a bubble is considered to be covered by the model only if its height exceeds its wavelength before it stops rising.
 Experiments which do not meet that condition are discarded.
 
-The bubble grows until mixing dillutes its buoyancy sufficiently for it to stop rising.
-After this point, it slowly receeds due to diffusing across the bubble tip.
-The model does not account for this diffusive effect, which moves move the center of the interface rather than just broaded it, so bubble trajectories are clipped beyond the point at which the bubble velocity is zero.
+The bubble grows until mixing dilutes its buoyancy sufficiently for it to stop rising.
+After this point, it slowly recedes due to diffusing across the bubble tip.
+The model does not account for this diffusive effect, which moves move the center of the interface rather than just broadened it, so bubble trajectories are clipped beyond the point at which the bubble velocity is zero.
 The height at that point in the trajectory is maximal and called the \textit{penetration depth}.
 
 The penetration depth increases with Rayleigh number.
@@ -117,29 +117,29 @@ The relative model errors are plotted vs the Rayleigh and Schmidt numbers in \fr
 In both models, the nominal error is less than 5\%, but the two errors have differing structures.
 
 The relative mixing error is about 3\% for the complete experiments, with generally greater relative error at greater Rayleigh and Schmidt numbers.
-Amoung the incomplete experiments, relative error decreases with Rayleigh number before increasing again.
+Among the incomplete experiments, relative error decreases with Rayleigh number before increasing again.
 This is likely due to the incompleteness; the greater error above $\text{Ra} = 10^6$ suggests that the overall trend is increasing.
-Overall, the relationship between the accuracy of the mixing model the Rayleigh and Schimdt numbers is incomplete.
+Overall, the relationship between the accuracy of the mixing model the Rayleigh and Schmidt numbers is incomplete.
 
-The relative dyanmics error is about 1\%, with the exception of the unit Schmidt $\text{Ra} \approx 10^4$ case.
+The relative dynamics error is about 1\%, with the exception of the unit Schmidt $\text{Ra} \approx 10^4$ case.
 The mixing error for the outlying case is typical, so the error cannot be attributed to the treatment of mixing.
 This case will be considered more in the following sections.
 Outlier aside, the relative error decreases with Schmidt number and Rayleigh number, both for complete and incomplete trajectories.
 This indicates the dynamics model is most accurate, at least relative to the mixing height, when there is less mixing and drag.
-Another factor is reacceleration, which adds some relatively constant error that is amortized more when the penetration depth is greater.
+Another factor is re-acceleration, which adds some relatively constant error that is amortized more when the penetration depth is greater.
 
 
 \begin{comment}
 The model proposed in \sref{model} assumes the bubble is a coherent structure with a single velocity.
 If the Grashof number is high, then the bubble can break up into multiple smaller bubbles as the bubble accelerates.
 The break-up is easily identified visually.
-Increasing the Grashof number, Schmidt number, or both should enhance the break-up, so we can identify a bifurcataion boundary for the break-up.
+Increasing the Grashof number, Schmidt number, or both should enhance the break-up, so we can identify a bifurcation boundary for the break-up.
 
-On the other hand, at low Grashof and Schmidt numbers, the growth of bubble height can be dominated by the growth of the interface widith, leading to predominantly diffusive dynamics.
-This is particularly evident when the bubble height receeds, a process which is not accounted for in the buoyancy-drag model.
+On the other hand, at low Grashof and Schmidt numbers, the growth of bubble height can be dominated by the growth of the interface width, leading to predominantly diffusive dynamics.
+This is particularly evident when the bubble height recedes, a process which is not accounted for in the buoyancy-drag model.
 When the bubble velocity reverses, the trajectory is truncated for the purposes of fitting.
-We can identify cases for which the bubble height receeds over the first time unit.
-Similar to the break-up, decreasing the Grashof number, Schmidt number, or both should supress the bubble growth, so we can identify a bifurcation boundary here as well.
+We can identify cases for which the bubble height recedes over the first time unit.
+Similar to the break-up, decreasing the Grashof number, Schmidt number, or both should suppress the bubble growth, so we can identify a bifurcation boundary here as well.
 \end{comment}
 
 
@@ -161,7 +161,7 @@ Then, the estimates are used as the starting point for fitting, that is minimiza
 
 \begin{comment}
 The parameter $C_1$ scales the form drag and serves as a drag coefficient.  
-Because we have let $C_0 = 1$, the hydralic diameter of the bubble is roughly $\lambda$.
+Because we have let $C_0 = 1$, the hydraulic diameter of the bubble is roughly $\lambda$.
 Had we let $C_0 = 1/4$, the diameter would be the more common $\lambda/2$, but many of the parameters would be fractional.
 Now, we relate $C_1$ to the drag coefficient $C_d$ in the drag equation:
 \begin{equation}
@@ -178,7 +178,7 @@ The coefficient $C_1$ is related to the drag coefficient $C_d$ as:
 C_1 = \frac{C_d}{2} \frac{A}{\lambda^2}
 \end{equation}
 
-We plot the best fit values of $C_1$ vs the Grashof and Schimdt number in \fref{C1VsParam}.
+We plot the best fit values of $C_1$ vs the Grashof and Schmidt number in \fref{C1VsParam}.
 $C_1$ increases with Grashof and Schmidt number.
 
 \subsubsection{Skin drag coefficient, $C_2$}
@@ -213,12 +213,12 @@ This suggests that the values of $C_2$ for the incomplete trajectories are under
 \end{figure}
 
 The coefficient $C_3$ gives the ratio of the inertial height to the buoyant height.
-For $C_3 = 1$, the maximum bubble acceleration is $A g$ while $C_3 > 1$ represents the entrainment of neuteraly or anti-buoyant fluid that contributes to the intertia but not the forcing.
+For $C_3 = 1$, the maximum bubble acceleration is $A g$ while $C_3 > 1$ represents the entrainment of neutrally or anti-buoyant fluid that contributes to the inertia but not the forcing.
 Mixing, which also reduces the ratio of the forcing to the inertia, is accounted for explicitly with the $C_5$ coefficient and fit independently to the mixed volume observable, which prevents it from compensating for entrainment.
 
 The majority of trajectories have $C_3 = 1$, indicating that entrainment is not significant.
 For completed low Rayleigh high Schmidt flows, however, $C_3$ increases to a value of $2.1$.
-The increasing dependence on the Schmidt number and decreasing dependence on the Rayleigh number can be recaste as a decreasing dependence on the Grashof number, independent of the Schmidt number.
+The increasing dependence on the Schmidt number and decreasing dependence on the Rayleigh number can be recast as a decreasing dependence on the Grashof number, independent of the Schmidt number.
 This is consistent with the entrainment interpretation of $C_3$, which depends on viscosity but not diffusivity.
 We expect the higher Rayleigh trajectories which are incomplete to have increasing $C_3$ at lower Grashof numbers.
 
@@ -235,12 +235,12 @@ We expect the higher Rayleigh trajectories which are incomplete to have increasi
 The parameter $C_5$ gives the ratio of the span-wise circumference of the scalar interface to the wavelength.
 If the bubble were rectangular in cross section with diameter $\lambda / 2$, then $C_5 = 4$.
 Among the completed trajectories, $C_5$ is a much stronger function of the Schmidt number than the Rayleigh number, increasing in both.
-The values of $C_5$, which are between 2 and 3, indicate a thinning of the bubble that decreases the mix rate by reducing surface area and total quanity of pure light fluid transported into the dense fluid.
+The values of $C_5$, which are between 2 and 3, indicate a thinning of the bubble that decreases the mix rate by reducing surface area and total quantity of pure light fluid transported into the dense fluid.
 
 The incomplete trajectories contain richer behavior, with a local maximum at $\text{Ra} = 10^{5.5}$ and $\text{Sc} = 8$.
-The the trend of increasing $C_5$ with decreasing diffusivity could imply a wrinkling of the interface that enhances surface area relative to the span-wise are of the bubble.
-Similarly, increasing $C_5$ with decreasing viscosity, i.e. increasing Grashof number, could imply that less viscos bubbles have larger span-wise areas, and therefore greater surface area.
-The authors have no mechanism by which to explain the local maximum value, so we expect it to disappear with trajectory completition by default.
+The trend of increasing $C_5$ with decreasing diffusivity could imply a wrinkling of the interface that enhances surface area relative to the span-wise are of the bubble.
+Similarly, increasing $C_5$ with decreasing viscosity, i.e. increasing Grashof number, could imply that less viscous bubbles have larger span-wise areas, and therefore greater surface area.
+The authors have no mechanism by which to explain the local maximum value, so we expect it to disappear with trajectory completion by default.
 It would be very interesting if it remained, and further motivates completing the high Rayleigh number trajectories.
 
 \subsubsection{Pure fluid coefficient, $C_7$}
@@ -258,6 +258,6 @@ A value of $C_7 = 1$ implies the effective Atwood number is zeroed when $M(t) = 
 Values greater than one imply that some portion of the positively buoyant fluid that would be in bubble has become entrained into the neighboring spike, allowing $M(t) > \lambda^2 h$ while retaining net buoyancy.
 The complete trajectories all have $C_7 \approx 1$, while the incomplete trajectories at higher Rayleigh numbers have increasing $C_7$.
 It is possible that at higher Rayleigh numbers some volume of light fluid detaches from the bubble and is transported into the spike.
-However, it is more likely that in the incomplete cases $C_7$, which influences the dynamics most at high mixings, is underconstrained.
+However, it is more likely that in the incomplete cases $C_7$, which influences the dynamics most at high mixing volumes, is underconstrained.
 In that case, we would expect $C_7 \approx 1$ in all cases. 
 
