@@ -1,4 +1,4 @@
-\section{Numerical experiments}
+\section{Numerical experiments} \slabel{exp}
 
 To evaluate the simple model of \sref{model}, we conduct a battery of direct numerical simulations.
 The novel components of the simple model, i.e. viscous drag and mixing, are most pronounced at late times.
@@ -27,7 +27,7 @@ These are combined into 2 non-dimensional numbers, the Grashof number and the Sc
 \text{Gr} = \frac{A g \lambda^3}{\nu^2} \quad \text{Sc} = \frac{\nu}{D}
 \end{equation}
 The Grashof number serves the role of a Reynolds number for instability problems without a consistent characteristic velocity.
-For this reason, the root of the Grashof number is sometimes called the \textit{perturbation Reynolds number}~\cite{Wei2011}:
+For this reason, the root of the Grashof number is sometimes called the \textit{perturbation Reynolds number}~\cite{Wei2012}:
 \begin{equation}
 \text{Re}_p = \sqrt{\frac{A g \lambda^3}{\nu^2}}
 \end{equation}
@@ -47,9 +47,9 @@ The number of spatial samples needed to resolve the advection-diffusion equation
 It is prohibitively expensive to perform calculations at high Schmidt numbers and high Grashof numbers.  
 For this reason, we restrict the diffusivity to be no lower than ???, which provides $\text{Sc} = 4$ for the highest Grashof number in our range and higher for correspondingly lower Grashof numbers.
 
-Simulations are performed with the NekBox version of the Nek5000 code, which has been previously validated against single-mode Rayleigh-Taylor experiments~\cite{Validation2016,Wilkinson2007}.
+Simulations are performed with the NekBox version of the Nek5000 code, which has been previously validated against single-mode Rayleigh-Taylor experiments~\cite{Hutchinson2016,Wilkinson2007}.
 The spectral element method implemented by NekBox has purely dispersive errors and converges exponentially with the spectral order.
-The the resolution parameters; the number of spectral elements, the order of the spectral elements, and the time step; were chosen to achieve an accuracy of $10^{-4}$ in the bubble aspect ratio~\cite{Convergence2016}.
+The the resolution parameters; the number of spectral elements, the order of the spectral elements, and the time step; were chosen to achieve an accuracy of $10^{-4}$ in the bubble aspect ratio~\cite{hutchinson2016efficiency}.
 
 \subsection{Observables}
 
