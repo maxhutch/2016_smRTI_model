@@ -1,5 +1,50 @@
 \section{Model fit coefficients} \slabel{fit}
 
+\begin{table*}
+\centering
+\pgfplotstabletypeset[
+  col sep=space,
+  columns/$C_1$/.style={fixed,zerofill,precision=2},
+  columns/$C_2$/.style={fixed,zerofill,precision=1},
+  columns/$C_3$/.style={fixed,zerofill,precision=2},
+  columns/$C_7$/.style={fixed,zerofill,precision=2},
+  columns/$C_5$/.style={fixed,zerofill,precision=2},
+  columns/$E_d/max(H)$/.style={
+        column type=r,
+        dec sep align,
+        preproc/expr={100*##1},
+        postproc cell content/.append code={
+            \ifnum1=\pgfplotstablepartno
+                \pgfkeysalso{@cell content/.add={}{\%}}%
+            \fi
+        },
+        fixed,
+        fixed zerofill,
+  },
+  columns/$E_m/max(M)$/.style={
+        column type=r,
+        dec sep align,
+        preproc/expr={100*##1},
+        postproc cell content/.append code={
+            \ifnum1=\pgfplotstablepartno
+                \pgfkeysalso{@cell content/.add={}{\%}}%
+            \fi
+        },
+        fixed,
+        fixed zerofill,
+  },
+  every even row/.style={
+        before row={\rowcolor[gray]{0.9}}},
+  every head row/.style={
+        before row=\toprule,after row=\midrule},
+  every last row/.style={
+        after row=\bottomrule},
+]{tbl/coef.dat}
+\caption{ 
+Simulation conditions, fit coefficients, and relative errors. 
+}
+\end{table*}
+
 \subsection{Fitting}
 
 \begin{figure}
