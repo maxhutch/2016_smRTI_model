@@ -58,9 +58,9 @@ which differs from the linear theory by the absence of a $-D k^2$ term.
 This is the only term that can cause unstable interfaces to decay, i.e. $\gamma < 0$ for positive Atwood numbers.
 In the simple model, all unmixed bubbles grow while in the lineary theory highly diffusive bubbles decay.
 
-The other terms scaled by the other coefficients, i.e. $C_1, C_2, C_3, C_5, C_7$, can be omitted while the description of the exponential growth is unaffected.
+The other terms, i.e. those scaled by $C_1, C_2, C_3, C_5$ and $C_7$, can be omitted while the description of the exponential growth is unaffected.
 
-\subsection{Saturation}
+\subsection{Saturation regime}
 The exponential growth saturates as the bubble height increases.
 In the simple model, this captured by the $C_3$ term:
 \begin{equation}
@@ -69,27 +69,35 @@ In the simple model, this captured by the $C_3$ term:
 which becomes significant when $h \approx C_4 \lambda / C_3$.
 We will find in the following section that $C_3$ takes a value of about 1, so, omitting viscous corrections, saturation halves the growth rate at $h \approx \lambda / (2\pi)$.
 
-\subsection{Stagnation and reacceleration}
+The definition of the start of the saturation regime is somewhat arbitrary.
+Here, we propose the definition $h/\lambda < 0.05$ as it is where the exponential and saturated plots of the Froude number vs height visually deviate.
+The important thing is that this threshold is independent of $Ag$, the Grashof number, and the Rayleigh number.
+Within the saturation regime, the acceleration takes a limiting value of $Ag$, defining a saturation velocity:
+\begin{equation} \elabel{vel_sat}
+v_s \sim \sqrt{A g h}
+\end{equation}
 
-For sufficiently high Grashof numbers, the saturation regime is followed by a stagnation of the velocity, itself followed by a re-acceleration, as seen in \fref{high_Ra_traj}.
-There are no terms in the buoyancy-drag model capable of producing an inflection point in the Froude number vs bubble height, so stagnation and reacceleration cannot be controlled by turning a model coefficient on or off.
-This suggests that the buoyancy-drag model is missing a term.
+\subsection{Viscous regime}
+As the bubble grows, so does its surface area.
+The viscous drag, which scales linearly with the bubble height and bubble velocity, ultimately balances the buoyancy to limit the velocity, as in \eref{visc_vel}.
+The scaling of the onset of this regime can be found by equating the saturation velocity and the viscous velocity:
+\begin{equation}
+\sqrt{A g h} \sim \frac{A g \lambda^2}{\nu}.
+\end{equation}
+Solving for $h/\lambda$ yields:
+\begin{equation}
+\frac{h_\nu}{\lambda} \sim \frac{A g \lambda^3}{\nu^2} = \text{Gr},
+\end{equation}
+where $h_\nu$ is the onset of the viscous regime.
 
-As the height grows, the $C_2$ term does impose a limiting velocity, \eref{visc_vel}.
-When this limiting velocity is near or below the stagnation velocity, $\text{Fr} \approx \pi^{-1/2}$, saturation and reacceleration are surpressed.
+As in the saturation case, the particular definition of the onset is arbitrary.
+Here, we will define $h_\nu$ such that when $h_\nu/\lambda = 1$, the viscous velocity has the potential flow value: $v_\nu = \pi^{-1/2} \sqrt{A g \lambda}$.
+This works out to be:
+\begin{equation}
+\frac{h_\nu}{\lambda} = \frac{\pi}{C_2^2} \text{Gr} \approx 2.4 \times 10^{-4} \text{Gr}
+\end{equation}
 
-
-\subsection{Dissipative regime}
-
-As the bubble height increases, so does the surface area of the bubble.
-When the viscous drag reduces the bubble's acceleration, the flux of pure fluid into the bubble, which goes as the velocity, is unable to math the flux of mixed fluid through the interface.
-
-Beyond the stagntion and reacceleration regime, if present, late time mixing continues to influence the trajectory.
-The sidewall mixing term scaled by $C_5$ and bubble volume term scaled by $C_7$ are essential to the flow.
-Conversely, the high Rayleigh number trajectories that are clipped when they interact with the top wall underscontrain $C_5$ and $C_7$.
-This will later motivate the addtion of a regularization term to the fit.
-
-\subsection{Penetration depth}
+\subsection{Diffusive regime}
 \begin{figure}
 \includegraphics[width=\columnwidth]{figs/PenetrationDepth-vs-Rayleigh-Schmidt}
 \caption{ \flabel{depth_scatter}
@@ -98,17 +106,18 @@ This will later motivate the addtion of a regularization term to the fit.
 }
 \end{figure}
 
+The rate of diffusion across the surface of the bubble also scales with the bubble height.
+When the viscous drag limits the bubble's velocity, the flux of pure fluid into the bubble, which goes as the velocity, is unable to match the flux of mixed fluid through the interface.
+Mixing dillutes the buoyant fluid, reducing the Atwood number and therefore the bubble velocity.
+Ultimately, the Atwood number reaches zero and the bubble stops rising.
+
 The penetration depth is the maximum height of the bubble, which is the height of the bubble at the stopping condition of this analysis.
 We can estimate the scaling of the penetration depth as the product of a characteristic velocity with a characteristic time-scale.
-The late-time velocity is given by viscosity:
-\begin{equation}
-v_\nu \sim \frac{ A g \lambda^2}{\nu},
-\end{equation}
-while time-scale is given by diffusion:
+The late-time velocity is the viscous velocity, $v_\nu$, while time-scale is given by diffusion:
 \begin{equation}
 \tau_D = \frac{\lambda^2}{D}.
 \end{equation}
-Combining and non-dimensionalizing by the wave-length yeilds:
+Combining and non-dimensionalizing yeilds:
 \begin{equation}
 \frac{h(\infty)}{\lambda} = \frac{A g \lambda^3}{\nu D} = \text{Ra},
 \end{equation}
@@ -116,4 +125,15 @@ so the penetration depth should go linearly with the Rayleigh number.
 
 The penetration depth is plotted as a function of Rayleigh and Schmidt number in \fref{depth_scatter}, and, indeed, depends strongly on the Rayleigh number before being clipped by the top walls.
 Furthermore, the relationship to the Rayleigh number is linear over the cases shown here, as shown in \fref{depth_line}.
+
+\subsection{Stagnation and reacceleration}
+
+Absent from the previous discussion is the stagnation and re-acceleration of the bubble around $h / \lambda = 1$, as seen in \fref{high_Ra_traj}.
+There are no terms in the buoyancy-drag model capable of producing an inflection point in the Froude number vs bubble height, so stagnation and reacceleration cannot be controlled by turning a model coefficient on or off.
+This suggests that the buoyancy-drag model is missing a term.
+
+However, the buoyancy-drag model does have a limiting velocity, the viscous velocity $v_\nu$.
+When the viscous velocity is near or below the stagnation velocity, $\text{Fr} \approx \pi^{-1/2}$, saturation and reacceleration are surpressed.
+Otherwise, stagnation and reacceleration temporarily interupt the saturation regime.
+The stagnation and re-accleration is a transient regime that only occurs at sufficiently high Grashof numbers.
 
