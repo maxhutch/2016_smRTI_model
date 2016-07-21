@@ -1,40 +1,59 @@
-\section{Conclusions}
+\section{Conclusions} \slabel{conc}
 
 % We proposed a model
 We have proposed a simple ODE model for the growth of single mode Rayleigh-Taylor bubbles and spikes at low Atwood number.
-The model targets an intermediate range of Reynolds numbers and high Peclet numbers, in which the single mode pertubration grows into an array of coherent bubbles and spikes.
-The dynamics of the bubbles are described in terms of bouyancy, viscous drag, and form drag.
+The model targets an intermediate range of Grashof numbers and high Rayleigh numbers, in which the single mode perturbation grows into an array of coherent bubbles and spikes.
+The dynamics of the bubbles are described in terms of buoyancy, viscous drag, and form drag.
 The buoyant force is scaled by a mixing factor related to the volume faction of mixed fluid within the bubble, which is modeled by diffusion across the bubble's interface.
 
+% The coefficients can be connected to the regimes of the flow
+We have presented high fidelity spectral element simulations that reach later times and higher aspect ratios than previously available.
+The trajectory of the bubble can be roughly divided into regimes based on which terms in the model must be included
+The first regime is exponential growth, which requires only the $C_4$, $C_6$, and $C_8$ terms, each of which is set by the linear theory.
+Next is the saturation regime, which adds the $C_3$ inertial term and onsets around $h = 0.05 \lambda$.
+The $C_1$ form drag term can be added for better agreement, but doesn't change the dynamics qualitatively.
+Next is the viscous regime, which adds the $C_2$ skin drag term and onsets around $10^{-4} \text{Gr}$.
+The last is the diffusive regime, which adds the $C_5$ and $C_7$ mixing terms and onsets around $10^{-4} \text{Ra}$.
+
+% Stagnation/reacceleration is a transient
+The model proposed here is unable to describe stagnation and re-acceleration seen at higher Grashof numbers.
+However, the model is very accurate both before and after stagnation and re-acceleration, respectively.
+This demonstrates stagnation and re-acceleration to be transients in the flow, occurring around $h = \lambda$, suggesting that the physical processes that lead to them are initially absent, grow to some critical extent, and then decay relative to the magnitude of other processes.
+The bubble tip vortex ring is a strong candidate, as suggested by many others.
+The model could be extended to account for the build-up of vorticity at the bubble tip.
+
 % Viscosity sets the only terminal length scale
-The viscous drag, which is absent in other buoyancy-drag models, is essential to recovering terminal behavior at high aspect ratios and low diffusivities.  
+The viscous drag, which is absent in other buoyancy-drag models, is essential to recovering terminal behavior at high aspect ratios and low diffusivity.  
 Without viscous drag or mixing, the buoyant force grows with the aspect ratio while the form drag does not, leading to unbounded bubble velocity.
 In practice, as the velocity grows at high Reynolds number, the bubble interface breaks up leading to enhanced turbulent mixing.
 At moderate Reynolds number, viscosity bounds the bubble velocity, generally above the bound given by potential flow theories.
 
 % Mixing kills all bubbles
-Mixing reduces buoyant force until the bubble stops rising.
-
-% Stagnation/reacceleration is a transient
-The model proposed here is unable to describe stagnation and reacceleration seen at higher Grashof numbers.
-However, the model is very accurate both before and after stagnation and reacceleration, respectively.
-This demonstrates stagnation and reacceleration to be transients in the flow, and suggests that the physical processes that lead to them are initially absent, grow to some critical extent, and then decay relative to the magnitude of other processes.
-The bubble tip vortex ring is a strong candidate, as suggested by many others.
-The model could be extended to account for the build-up of vorticity at the bubble tip.
+For any non-zero diffusivity, mixing reduces the buoyant force and the bubble ultimately stops rising.
+The penetration depth, i.e. the height of the bubble when it stops, scales linearly with the Rayleigh number.
+The relation implicitly defines a critical Rayleigh number below which the bubbles do not rise: $\text{Ra}_c = ???$.
 
 % We can constrain 3 model parameters
-The proposed model has 8 descriptive parameters, 3 of which can be constrained by limiting cases.
+The proposed model has 8 descriptive parameters, 3 of which are constrained by the linear theory.
+These three are the $C_4 \lambda^3$ term in the inertia, the $C_6 \lambda^2$ term in the surface area, and the $C_8 \lambda^3$ term in the bubble volume.
+The presence of the $C_4$ term demonstrates that the volume of fluid that begins to circulate at early times is independent of the bubble height.
+$C_4$ is an increasing function of the viscosity, indicating that the viscous entrainment increases this volume, resulting in the reduction in growth rate predicted by the linear theory.
 
 % We can estimate the reamining 5
 The physical interpretation of the five remaining parameters provides a prior for their value.
-Those parameters are similar to a drag coefficent, a friction factor, and three geometric ratios.
+Those parameters are similar to a drag coefficient, a friction factor, and three geometric ratios.
+The $C_1$ term is estimated by relation to the drag coefficient of a flat plate.
+The $C_2$ term is estimated by relation to the Darcy friction factor in a square duct.
+The $C_3$ term is estimated as unity such that the inviscid immiscible acceleration is $Ag$.
+The $C_7$ term is estimated as unity such that the fully mixed Atwood number is zero.
+The $C_5$ term is estimated as $\pi$, which corresponds to cylindrical bubbles with diameter $\lambda / 2$.
 
 % The parameters are fit to DNS
-To calculate the 5 unconstrained model parameters, we fit the model to a battery of direct numerical simulations at moderate Reynolds number, high Peclet number, and high aspect ratio.
+To calculate the 5 unconstrained model parameters, we fit the model to a battery of direct numerical simulations at moderate Grashof number, high Rayleigh number, and high aspect ratio.
 The simulations provide trajectories for the bubble height and volume of mixed fluid.
 The single mixing parameter is fit directly to mixed fluid measurements from numerical simulations.
 The remaining four parameters are fit with L2 regularization around the prior estimates.
-The resulting model reproduces simulated trajectories with relative errors in the bubble height from ??? to ??? and in the volume of mixed fluid from ??? to ???
+The resulting model reproduces simulated trajectories with relative errors in the bubble height less than 2\% and in the volume of mixed fluid less than 4\%.
 
 % Certain parameters depend on the Grashof number
 
