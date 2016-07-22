@@ -1,15 +1,24 @@
 \section{Model fit coefficients} \slabel{fit}
-
 \begin{table*}
+\setlength{\tabcolsep}{12pt}
 \centering
 \pgfplotstabletypeset[
   col sep=space,
+  columns/Gr/.style={sci,sci 10e,precision=1},
+  columns/Ra/.style={sci,sci 10e,precision=1},
+  columns/Sc/.style={column type/.add={}{|}},
+%every first column/.style={
+%column type/.add={|}{}
+%},
+%every last column/.style={
+%column type/.add={}{|}
+%},
   columns/$C_1$/.style={fixed,zerofill,precision=2},
-  columns/$C_2$/.style={fixed,zerofill,precision=1},
+  columns/$C_2$/.style={fixed,zerofill,precision=1,dec sep align},
   columns/$C_3$/.style={fixed,zerofill,precision=2},
   columns/$C_7$/.style={fixed,zerofill,precision=2},
-  columns/$C_5$/.style={fixed,zerofill,precision=2},
-  columns/$E_d/max(H)$/.style={
+  columns/$C_5$/.style={fixed,zerofill,precision=2, column type/.add={}{|}},
+  columns/$E_d$/.style={
         column type=r,
         dec sep align,
         preproc/expr={100*##1},
@@ -21,7 +30,7 @@
         fixed,
         fixed zerofill,
   },
-  columns/$E_m/max(M)$/.style={
+  columns/$E_m$/.style={
         column type=r,
         dec sep align,
         preproc/expr={100*##1},
@@ -33,12 +42,15 @@
         fixed,
         fixed zerofill,
   },
-  every even row/.style={
-        before row={\rowcolor[gray]{0.9}}},
   every head row/.style={
-        before row=\toprule,after row=\midrule},
+        before row=\toprule,after row=\colrule},
+  every row no 1/.style={after row=\colrule},
+  every row no 4/.style={after row=\colrule},
+  every row no 8/.style={after row=\colrule},
+  every row no 13/.style={after row=\colrule},
+  every row no 17/.style={after row=\colrule},
   every last row/.style={
-        after row=\bottomrule},
+        after row=\botrule},
 ]{tbl/coef.dat}
 \caption{ 
 Simulation conditions, fit coefficients, and relative errors. 
