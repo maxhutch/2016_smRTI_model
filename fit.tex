@@ -151,6 +151,13 @@ Though not definitive, those suggest that the data present in the incomplete exp
 Conversely, in some cases the behavior in the incomplete experiments departs from that in the complete ones. 
 In those cases, it is difficult to differentiate between Rayleigh-dependent behavior and the side-effects of underconstrained fitting.
 
+It should be noted that the computational cost of a complete trajectory goes as $\text{Gr}^4 \text{Ra}^2 \max(1, \text{Sc}^4)$.
+The fourth power of the Grashof and Schmidt numbers come from stability constraints: three from the spectral constraint and 1 from the explicit time-stepping constraint.
+The square of the Rayleigh number comes from the penetration depth, which both increases the length of the domain and the number of time-steps taken.
+For $\text{Sc} \ge 1$, the cost simplifies to $\text{Ra}^6$.
+For the runs in this study, the cheapest incomplete trajectories will cost $64\times$ more than most expensive completed ones.
+The most expensive incomplete trajectory, at $\text{Ra} \approx 1.4\times 10^6$, will cost over $10^9\times$ more than cheapest completed one.
+
 \subsection{Accuracy of the models}
 
 \begin{figure*}
@@ -216,27 +223,19 @@ Then, the estimates are used as the starting point for fitting, that is minimiza
 }
 \end{figure}
 
-\begin{comment}
-The parameter $C_1$ scales the form drag and serves as a drag coefficient.  
-Because we have let $C_0 = 1$, the hydraulic diameter of the bubble is roughly $\lambda$.
-Had we let $C_0 = 1/4$, the diameter would be the more common $\lambda/2$, but many of the parameters would be fractional.
-Now, we relate $C_1$ to the drag coefficient $C_d$ in the drag equation:
-\begin{equation}
-C_1 \lambda^2 \dot{h}^2 = \frac{1}{2} C_d A \dot{h}^2
-\end{equation}
-so $C_1$ can be estimated using drag coefficients of cylindrical objects:
-\begin{equation}
-C_1 = \frac{1}{2} C_d \frac{A}{\lambda^2} = 0.41 \frac{A}{\lambda^2} \approx 0.3
-\end{equation}
-\end{comment}
+The coefficient $C_1$ is related to the drag coefficient $C_d$ by \eref{prior_c1}.
+Therefore we expect it to take a value around or less than $0.64$, which corresponds to the drag coefficient of a flat plate and a surface area $A = \lambda^2$.
 
-The coefficient $C_1$ is related to the drag coefficient $C_d$ as:
-\begin{equation}
-C_1 = \frac{C_d}{2} \frac{A}{\lambda^2}
-\end{equation}
+The $C_1$ term is most influential early in the flow, so we expect it to be well constrained even in the incomplete trajectories.
+However, the $C_1$ term is qualitatively redundant with the $C_3$ inertial term, as they both bound the acceleration but not the velocity.
+Similarly, viscous drag is weak but still present at early times.
+It is possible that late-time effects that influence $C_2$ could have an indirect effect on the value of $C_1$.
 
-We plot the best fit values of $C_1$ vs the Grashof and Schmidt number in \fref{C1VsParam}.
-$C_1$ increases with Grashof and Schmidt number.
+The fit values of $C_1$ are plotted vs the Rayleigh and Schmidt numbers in \fref{C1VsParam}.
+The majority of trajectories are closely grouped between $0.3$ and $0.6$, which fits the drag coefficient rationale.
+However, there are outliers both at $C_1 = 0$ and $C_1 > 0.9$.
+These outliers are troubling because each type occurs at both high and low Schmidt number and at low to moderate Rayleigh numbers.
+There is no clear pattern, but there are no outliers at the high Rayleigh-number.
 
 \subsubsection{Skin drag coefficient, $C_2$}
 \begin{figure}
@@ -248,16 +247,23 @@ $C_1$ increases with Grashof and Schmidt number.
 }
 \end{figure}
 
-The coefficient $C_2$ scales the viscous drag, so it is also a drag coefficient of sorts.
-$C_2$ sets the terminal velocity in the absence of mixing, so we can relate it to the Darcy friction factor:
-\begin{equation}
-C_2 = 128 \frac{f_D}{\bar{f}_D},
-\end{equation}
-where $f_D$ is the Darcy-type friction factor for the bubble and $\bar{f}_D$ is the laminar friction factor for a circular pipe.
-If $C_2 < 128$, the rate of momentum transfer out of the bubble is less than circular pipe; for $C_3 > 128$ it is greater.
-For the completed trajectories, $C_2$ is about $60$ with only weak dependence on the Rayleigh and Schmidt numbers, while the higher Rayleigh incomplete trajectories have increasing $C_2$.
-This suggests that the values of $C_2$ for the incomplete trajectories are underconstrained and will decrease when they are completed.
+The coefficient $C_2$ scales the viscous drag.
+As with $C_1$, $C_2$ can be related to a standard measure of drag, in this case the Darcy friction factor, which provides an estimate of 113.
+The $C_2$ term is linear with $h$ and $\dot{h}$, so its influence is greatest at moderate to late times.
+Therefore, values of $C_2$ taken from incomplete trajectories should be taken with a grain of salt.
 
+The fit values of $C_2$ are plotted vs the Rayleigh and Schmidt numbers in \fref{C2VsParam}.
+For the completed trajectories, $C_2$ is about $60$ and grows slightly with the Grashof number while being nearly independent of the diffusivity.
+At higher Rayleigh numbers the incomplete trajectories also show $C_2$ growing with Grashof number, but the effect is much stronger.
+There is weaker growth as the diffusivity decreases.
+Finally, at the highest Grashof numbers the $C_2$ coefficient moderates again.
+
+The presense of a positive relationship between $C_2$ and the Grashof number in both the complete and incomplete trajectories suggests it is a real effect, though its strength is unclear.
+The relationship between $C_2$ and the diffusivity is much weaker and could disappear as the high Rayleigh trajectories are completed.
+
+One possible mechanism for increasing $C_2$ with increasing Grashof number is the development of small amplitude Kelvin-Helmholtz structures on the bubble surface.
+These structures are surpressed at low Grashof number and grow more rapidly at higher Grashof number.
+They would enhance the transport of momentum across the bubble interface, thereby increasing the viscous drag coefficient.
 
 \subsubsection{Inertial coefficient, $C_3$}
 \begin{figure}
@@ -272,12 +278,17 @@ This suggests that the values of $C_2$ for the incomplete trajectories are under
 The coefficient $C_3$ gives the ratio of the inertial height to the buoyant height.
 For $C_3 = 1$, the maximum bubble acceleration is $A g$ while $C_3 > 1$ represents the entrainment of neutrally or anti-buoyant fluid that contributes to the inertia but not the forcing.
 Mixing, which also reduces the ratio of the forcing to the inertia, is accounted for explicitly with the $C_5$ coefficient and fit independently to the mixed volume observable, which prevents it from compensating for entrainment.
+The $C_3$ term is linear with the height, so its influence is most pronounced at greater values of the height.
 
+The fit values of $C_3$ are plotted vs the Rayleigh and Schmidt numbers in \fref{C3VsParam}.
 The majority of trajectories have $C_3 = 1$, indicating that entrainment is not significant.
-For completed low Rayleigh high Schmidt flows, however, $C_3$ increases to a value of $2.1$.
-The increasing dependence on the Schmidt number and decreasing dependence on the Rayleigh number can be recast as a decreasing dependence on the Grashof number, independent of the Schmidt number.
-This is consistent with the entrainment interpretation of $C_3$, which depends on viscosity but not diffusivity.
-We expect the higher Rayleigh trajectories which are incomplete to have increasing $C_3$ at lower Grashof numbers.
+For completed low Rayleigh high Schmidt flows $C_3$ increases to a value of $9.1$.
+However, the nominal value of $1$ is recovered within the completed trajectories.
+Because the $C_3$ term depends on the height, it is relatively underconstrained at lower Rayleigh numbers.
+If the model values of $C_4$, $C_6$, or $C_8$ are incorrect, the $C_3$ term has the greatest ability to compensate for the error when the height and velocity are small.
+However, the height is still small, so $C_3$ would have to change significantly.
+The author belives that $C_3 = 1$ is therefore the nominal value, but there is a breakdown in the model at low Rayleigh numbers that is influencing the fit of $C_3$.
+Identifying and correcting this model breakdown would be expected to recover $C_3$ at low Rayleigh number.
 
 \subsubsection{Interfacial area coefficient, $C_5$}
 \begin{figure}
@@ -291,12 +302,26 @@ We expect the higher Rayleigh trajectories which are incomplete to have increasi
 
 The parameter $C_5$ gives the ratio of the span-wise circumference of the scalar interface to the wavelength.
 If the bubble were rectangular in cross section with diameter $\lambda / 2$, then $C_5 = 4$.
+The mixing width $\delta$ increases with time, so the $C_5$ term is most influential at late times.
+Therefore, the values of $C_5$ in the incomplete trajectories should be taken with a grain of salt.
+
+The fit values of $C_5$ are plotted vs the Rayleigh and Schmidt numbers in \fref{C5VsParam}.
 Among the completed trajectories, $C_5$ is a much stronger function of the Schmidt number than the Rayleigh number, increasing in both.
-The values of $C_5$, which are between 2 and 3, indicate a thinning of the bubble that decreases the mix rate by reducing surface area and total quantity of pure light fluid transported into the dense fluid.
+The values are between 2 and 3, indicate a thinning of the bubble that decreases the mix rate by reducing surface area and total quantity of pure light fluid transported into the dense fluid.
 
 The incomplete trajectories contain richer behavior, with a local maximum at $\text{Ra} = 10^{5.5}$ and $\text{Sc} = 8$.
-The trend of increasing $C_5$ with decreasing diffusivity could imply a wrinkling of the interface that enhances surface area relative to the span-wise are of the bubble.
-Similarly, increasing $C_5$ with decreasing viscosity, i.e. increasing Grashof number, could imply that less viscous bubbles have larger span-wise areas, and therefore greater surface area.
+In aggreate, higher Rayleigh number trajectories have increasing $C_5$ with decreasing diffusivity.
+The dependence on the Grashof number is peaked at $\text{Gr} \approx 4.3 \times 10^4$.
+The increasing $C_5$ with increasing Schmidt number in the completed trajectories is consistent with these two effects, which can be seen the smoothness of \fref{C5VsParam}.
+
+A possible mechanism for increasing $C_5$ with decreasing diffusivity is the development of structures on the scalar interface the increase the effective surface area.
+This is related to the Kelvin-Helmholtz structures proposed to explain increasing $C_2$ with Grashof number, but with additional dependence on the diffusivity which can otherwise smear out the structures.
+
+Another possible mechanism is a change in the bubble diameter.
+Higher Grashof number bubbles have thinner momentum boundaries, allowing more buoyant fluid to flow freely through the stem of the bubble.
+This sustains the bubble diameter at late times, while more viscous bubbles can thin.
+This would explain an increase of $C_5$ with the Grashof number.
+
 The authors have no mechanism by which to explain the local maximum value, so we expect it to disappear with trajectory completion by default.
 It would be very interesting if it remained, and further motivates completing the high Rayleigh number trajectories.
 
@@ -313,8 +338,10 @@ It would be very interesting if it remained, and further motivates completing th
 Similar to $C_3$, $C_7$ gives the ratio of the buoyant volume to the maximal mixed volume.
 A value of $C_7 = 1$ implies the effective Atwood number is zeroed when $M(t) = \lambda^2 h$.
 Values greater than one imply that some portion of the positively buoyant fluid that would be in bubble has become entrained into the neighboring spike, allowing $M(t) > \lambda^2 h$ while retaining net buoyancy.
+
+The fit values of $C_7$ are plotted vs the Rayleigh and Schmidt numbers in \fref{C7VsParam}.
 The complete trajectories all have $C_7 \approx 1$, while the incomplete trajectories at higher Rayleigh numbers have increasing $C_7$.
 It is possible that at higher Rayleigh numbers some volume of light fluid detaches from the bubble and is transported into the spike.
 However, it is more likely that in the incomplete cases $C_7$, which influences the dynamics most at high mixing volumes, is underconstrained.
-In that case, we would expect $C_7 \approx 1$ in all cases. 
+In that case, we would expect $C_7 \approx 1$ with no dependence on the Grashof, Rayleigh, or Schmidt numbers when the trajectories are completed.
 

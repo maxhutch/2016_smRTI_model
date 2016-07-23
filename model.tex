@@ -91,7 +91,7 @@ M(t) \approx S \int 1- \text{abs}\left[\phi_1(r)\right] dr
 where $S$ is the surface area and
 $\phi_1$ is a model 1D scalar profile:
 \begin{equation}
-\phi_1(r) = \erf\left[\frac{r}{\delta}\right] - \erf\left[\frac{r - d}{\delta}\right] - 1,
+\phi_1(r) = \frac{1}{2} \left( \erf\left[\frac{r}{\delta}\right] - \erf\left[\frac{r - d}{\delta}\right] \right),
 \end{equation}
 where $\delta$ is the interface width and
 $d$ is the diameter of the bubble.
@@ -120,8 +120,8 @@ where $t_0$ is chosen to match $\delta(0)$ to the initial condition.
 We perform the integral through the bubble:
 \begin{equation}
 \begin{split}
-\int_0^d 1- \left|\phi_1(r)\right| dr &= \frac{2 \delta}{\sqrt{\pi}} \left( 1 - \exp\left[-\frac{d^2}{\delta^2}\right]\right) \\
-&+ 2 d \left(1 - \erf\left[\frac{d}{\delta}\right]\right).
+\int_{-d/2}^{d/2} 1- \left|\phi_1(r)\right| dr &= \frac{\delta}{\sqrt{\pi}} \left( 1 - \exp\left[-\frac{d^2}{\delta^2}\right]\right) \\
+&+ d \left(1 - \erf\left[\frac{d}{\delta}\right]\right).
 \end{split}
 \end{equation}
 
@@ -206,9 +206,9 @@ and Gr is the Grashof number.
 Next consider the initial quantity of mixed mass for small sharp interfaces, $\delta(0), a_0 \rightarrow 0$.
 We assume the initial condition is an error function profile:
 \begin{equation}
-M(t=0) = \lambda^2 \int_{-\infty}^{\infty} \text{erf}\left[\frac{z}{\delta}\right] = \frac{2 \delta}{\sqrt{\pi}} = \frac{2 \delta C_6}{\sqrt{\pi}},
+M(t=0) = \lambda^2 \int_{-\infty}^{\infty} \text{erf}\left[\frac{z}{\delta}\right] = \frac{\delta}{\sqrt{\pi}} = \frac{\delta C_6}{\sqrt{\pi}},
 \end{equation}
-which implies that $C_6 = 1$.
+which implies that $C_6 = 2$.
 
 Next, consider the limit when $\delta \rightarrow 0 $ and $h \rightarrow 0$.
 In the linear theory, the Atwood number is rescaled:
@@ -217,21 +217,22 @@ A = \frac{A_0}{1 + \pi^{-1/2} k \delta} = A_0 \left(1 - \frac{k \delta}{\sqrt{\p
 \end{equation}
 We equate this to \eref{effective-atwood}:
 \begin{equation}
-\frac{2 \pi \delta}{\lambda (\sqrt{\pi} + 2 \pi \delta / \lambda)} = \frac{C_6 }{C_8}\frac{2 \delta}{\lambda \sqrt{\pi} },
+\frac{2 \pi \delta}{\lambda (\sqrt{\pi} + 2 \pi \delta / \lambda)} = \frac{C_6 }{C_8}\frac{\delta}{\lambda \sqrt{\pi} },
 \end{equation}
 or
 \begin{equation}
-\frac{C_6}{C_8} = \frac{\pi \sqrt{\pi}}{\sqrt{\pi} + 2 \pi \delta / \lambda}.
+\frac{C_6}{C_8} = \frac{2 \pi \sqrt{\pi}}{\sqrt{\pi} + 2 \pi \delta / \lambda}.
 \end{equation}
 The variable $\delta$ is associated with the mixing model, not the dynamics, so it would be convenient to have $C_8$ independent of $\delta$.
-We've defined $C_6 = 1$ in the limit of $\delta(0), a_0 \rightarrow 0$, so we can add a term that goes to zero at $\delta = 0$:
+We've defined $C_6 = 2$ in the limit of $\delta(0), a_0 \rightarrow 0$, so we can add a term that goes to zero at $\delta = 0$:
 \begin{equation}
-C_6 = \frac{1}{1 + 2 \sqrt{\pi} \delta / \lambda},
+C_6 = \frac{2}{1 + 2 \sqrt{\pi} \delta / \lambda},
 \end{equation}
 which constrains:
 \begin{equation}
-C_8 = \frac{1}{\pi}
+C_8 = \frac{1}{2\pi},
 \end{equation}
+which is the same as $C_4$ in the inviscid case.
 
 \subsection{Coefficient estimation}
 
@@ -243,7 +244,7 @@ Now, we relate $C_1$ to the drag coefficient $C_d$ in the drag equation:
 C_1 \lambda^2 \dot{h}^2 = \frac{1}{2} C_d A \dot{h}^2
 \end{equation}
 so $C_1$ can be estimated using drag coefficients of similar objects:
-\begin{equation}
+\begin{equation} \elabel{prior_c1}
 C_1 = \frac{C_d}{2} \frac{A}{\lambda^2}.
 \end{equation}
 Initially, the bubble tip is a flat plate, which has $C_d = 1.28$.
