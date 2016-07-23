@@ -236,6 +236,25 @@ which is the same as $C_4$ in the inviscid case.
 
 \subsection{Coefficient estimation}
 
+\begin{figure*}
+\begin{subfigure}[b]{\columnwidth}
+\includegraphics[width=\columnwidth]{figs/slice}
+\caption{Scalar $\phi$}
+\end{subfigure}
+\begin{subfigure}[b]{\columnwidth}
+\includegraphics[width=\columnwidth]{figs/slice_w}
+\caption{Vertical component of the velocity, $w$}
+\end{subfigure}
+\caption{
+Slices of the scalar and vertical component of the velocity along the diagonal of a bubble at early times and high Rayleigh number.
+The arrows indiciate the dependence of the model terms on different span-wise length scales, and are identical in both figures.
+$C_1$ is related to the maximum cross sectional diameter of the bubble in the velocity field.
+$C_2$ is related to the nominal side-wall diameter of the bubble in the velocity field.
+$C_5$ is related to the nominal side-wall diameter of the bubble in the scalar field.
+$\delta$ is related to the interface thickness in the scalar field.
+}
+\end{figure*}
+
 The parameter $C_1$ scales the form drag and serves as a drag coefficient.  
 Because we have let $C_0 = 1$, the hydralic diameter of the bubble is roughly $\lambda$.
 Had we let $C_0 = 1/4$, the diameter would be the more common $\lambda/2$, but many of the parameters would be fractional.
@@ -249,7 +268,8 @@ C_1 = \frac{C_d}{2} \frac{A}{\lambda^2}.
 \end{equation}
 Initially, the bubble tip is a flat plate, which has $C_d = 1.28$.
 At late times, the bubble is closer to an elongated cylinder, which has $C_d = 0.82$, but with a somewhat streamlined tip, which further reduces drag.
-We expect $C_1 < .64$, but possibly much smaller if the bubble takes a streamlined shape.
+We expect $C_1 \approx 0.64$, but possibly much smaller if the bubble takes a streamlined shape.
+However, if the bubble spreads to have a diameter greater than $\lambda / 2$, $C_1$ could be greater than $0.64$.
 
 Next, Consider the limit when $h \rightarrow \infty$ and $D = 0$:
 The dynamical equation becomes
