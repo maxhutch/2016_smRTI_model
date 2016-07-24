@@ -53,6 +53,7 @@ The the resolution parameters; the number of spectral elements, the order of the
 
 \subsection{Observables}
 
+\begin{comment}
 \begin{figure}
 \includegraphics[width=\columnwidth]{figs/swp_Sc_1.0_nu_8.0-t_max_z-0256.eps}
 \includegraphics[width=\columnwidth]{figs/swp_Sc_1.0_nu_8.0-t_proj_z-0256.eps}
@@ -60,13 +61,12 @@ The the resolution parameters; the number of spectral elements, the order of the
   Span-wise max and mean of scalar field.
 }
 \end{figure}
+\end{comment}
 
 \begin{figure}
-\includegraphics[width=\columnwidth]{figs/comp-height-0.0008-0.0002.eps}
-\includegraphics[width=\columnwidth]{figs/comp-height-0.0008-0.0004.eps}
 \includegraphics[width=\columnwidth]{figs/comp-height-0.0008-0.0008.eps}
 \caption{ \flabel{heights}
-  Comparison of height metrics at $\text{Gr} = ???$ and $\text{Sc} = \{2, 4, 8\}$.
+  Comparison of height metrics at $\text{Gr} = 4.8\times10^4$ and $\text{Sc} = 1$.
 }
 \end{figure}
 
@@ -79,7 +79,8 @@ We can assume an error function-like profile across the interface at the bubble 
 To separate the definition of the bubble tip from the effect of decreasing effective Atwood number, we introduce a new definition: the bubble tip is defined as the inflection point in the span-wise maximum scalar profile.
 For the symmetric case, this span-wise maximum of the scalar is equivalent to the value along the bubble axis.
 At early times, the profile is an error function that broadens with diffusion and advects with the bubble velocity.
-At late times, the $\phi > 0$ side of the error function decays into a nearly linear profile, as seen in \fref{profiles}.
+At late times, the $\phi > 0$ side of the error function decays into a nearly linear profile.
+%, as seen in \fref{profiles}.
 However, the profile remains sharp near the bubble tip, decoupling the position of the inflection point from the sidewall mixing.
 
 This definition of the bubble height is compared to two more traditional definitions, based on a cutoff in the mean or maximum profiles, in \fref{heights}.
