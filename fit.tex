@@ -170,14 +170,14 @@ The most expensive incomplete trajectory, at $\text{Ra} \approx 1.4\times 10^6$,
 \caption{Relative dynamics error, $E_d/\text{max}[H(t)]$}
 \end{subfigure}
 \caption{ \flabel{errVsParam}
-  Relative model errors vs Rayleigh and Schmidt numbers.
+  Relative model errors versus Rayleigh and Schmidt numbers.
   Experiments on the left side of the dashed line completed when the bubble stopped rising.
   Experiments on the right side of the dashed line are incomplete, having approached the vertical boundaries of the simulated domain.
 }
 \end{figure*}
 
 The accuracy is characterized by the mixing and dynamics model errors relative to the maximum mix volume and bubble height, respectively.
-The relative model errors are plotted vs the Rayleigh and Schmidt numbers in \fref{errVsParam}.
+The relative model errors are plotted versus the Rayleigh and Schmidt numbers in \fref{errVsParam}.
 In both models, the nominal error is less than 5\%, but the two errors have differing structures.
 
 The relative mixing error is about 3\% for the complete experiments, with generally greater relative error at greater Rayleigh and Schmidt numbers.
@@ -188,7 +188,7 @@ Overall, the relationship between the accuracy of the mixing model the Rayleigh 
 The relative dynamics error is about 1\%, with the exception of the unit Schmidt $\text{Ra} \approx 10^4$ case.
 The mixing error for the outlying case is typical, so the error cannot be attributed to the treatment of mixing.
 This case will be considered more in the following sections.
-Outlier aside, the relative error decreases with Schmidt number and Rayleigh number, both for complete and incomplete trajectories.
+Outliers aside, the relative error decreases with Schmidt number and Rayleigh number, both for complete and incomplete trajectories.
 This indicates the dynamics model is most accurate, at least relative to the mixing height, when there is less mixing and drag.
 Another factor is re-acceleration, which adds some relatively constant error that is amortized more when the penetration depth is greater.
 
@@ -209,7 +209,7 @@ Similar to the break-up, decreasing the Grashof number, Schmidt number, or both 
 
 \subsection{Fit coefficients}
 The proposed model has 5 undetermined parameters.
-In each case, we estimate the value a-priori by physical arguments.
+In each case, we estimate the value a priori by physical arguments.
 Then, the estimates are used as the starting point for fitting, that is minimization of the model error over the scope of the model.
 
 \subsubsection{Form drag coefficient, $C_1$}
@@ -217,7 +217,7 @@ Then, the estimates are used as the starting point for fitting, that is minimiza
 \begin{figure}
 \includegraphics[width=\columnwidth]{figs/C1-vs-Rayleigh-Schmidt}
 \caption{ \flabel{C1VsParam}
-  Best fit for $C_1$ vs Grashof and Schmidt numbers.
+  Best fit for $C_1$ versus Rayleigh and Schmidt numbers.
   Experiments on the left side of the dashed line completed when the bubble stopped rising.
   Experiments on the right side of the dashed line are incomplete, having approached the vertical boundaries of the simulated domain.
 }
@@ -231,7 +231,7 @@ However, the $C_1$ term is qualitatively redundant with the $C_3$ inertial term,
 Similarly, viscous drag is weak but still present at early times.
 It is possible that late-time effects that influence $C_2$ could have an indirect effect on the value of $C_1$.
 
-The fit values of $C_1$ are plotted vs the Rayleigh and Schmidt numbers in \fref{C1VsParam}.
+The fit values of $C_1$ are plotted vsersus the Rayleigh and Schmidt numbers in \fref{C1VsParam}.
 The majority of trajectories are closely grouped between $0.3$ and $0.6$, which fits the drag coefficient rationale.
 However, there are outliers both at $C_1 = 0$ and $C_1 > 0.9$.
 These outliers are troubling because each type occurs at both high and low Schmidt number and at low to moderate Rayleigh numbers.
@@ -241,7 +241,7 @@ There is no clear pattern, but there are no outliers at the high Rayleigh-number
 \begin{figure}
 \includegraphics[width=\columnwidth]{figs/C2-vs-Rayleigh-Schmidt}
 \caption{ \flabel{C2VsParam}
-  Best fit for $C_2$ vs Grashof and Schmidt numbers.
+  Best fit for $C_2$ versus Rayleigh and Schmidt numbers.
   Experiments on the left side of the dashed line completed when the bubble stopped rising.
   Experiments on the right side of the dashed line are incomplete, having approached the vertical boundaries of the simulated domain.
 }
@@ -252,7 +252,7 @@ As with $C_1$, $C_2$ can be related to a standard measure of drag, in this case 
 The $C_2$ term is linear with $h$ and $\dot{h}$, so its influence is greatest at moderate to late times.
 Therefore, values of $C_2$ taken from incomplete trajectories should be taken with a grain of salt.
 
-The fit values of $C_2$ are plotted vs the Rayleigh and Schmidt numbers in \fref{C2VsParam}.
+The fit values of $C_2$ are plotted versus the Rayleigh and Schmidt numbers in \fref{C2VsParam}.
 For the completed trajectories, $C_2$ is about $60$ and grows slightly with the Grashof number while being nearly independent of the diffusivity.
 At higher Rayleigh numbers the incomplete trajectories also show $C_2$ growing with Grashof number, but the effect is much stronger.
 There is weaker growth as the diffusivity decreases.
@@ -262,14 +262,14 @@ The presense of a positive relationship between $C_2$ and the Grashof number in 
 The relationship between $C_2$ and the diffusivity is much weaker and could disappear as the high Rayleigh trajectories are completed.
 
 One possible mechanism for increasing $C_2$ with increasing Grashof number is the development of small amplitude Kelvin-Helmholtz structures on the bubble surface.
-These structures are surpressed at low Grashof number and grow more rapidly at higher Grashof number.
+These structures are suppressed at low Grashof number and grow more rapidly at higher Grashof number.
 They would enhance the transport of momentum across the bubble interface, thereby increasing the viscous drag coefficient.
 
 \subsubsection{Inertial coefficient, $C_3$}
 \begin{figure}
 \includegraphics[width=\columnwidth]{figs/C3-vs-Rayleigh-Schmidt}
 \caption{ \flabel{C3VsParam}
-  Best fit for $C_3$ vs Grashof and Schmidt numbers.
+  Best fit for $C_3$ versus Rayleigh and Schmidt numbers.
   Experiments on the left side of the dashed line completed when the bubble stopped rising.
   Experiments on the right side of the dashed line are incomplete, having approached the vertical boundaries of the simulated domain.
 }
@@ -280,7 +280,7 @@ For $C_3 = 1$, the maximum bubble acceleration is $A g$ while $C_3 > 1$ represen
 Mixing, which also reduces the ratio of the forcing to the inertia, is accounted for explicitly with the $C_5$ coefficient and fit independently to the mixed volume observable, which prevents it from compensating for entrainment.
 The $C_3$ term is linear with the height, so its influence is most pronounced at greater values of the height.
 
-The fit values of $C_3$ are plotted vs the Rayleigh and Schmidt numbers in \fref{C3VsParam}.
+The fit values of $C_3$ are plotted versus the Rayleigh and Schmidt numbers in \fref{C3VsParam}.
 The majority of trajectories have $C_3 = 1$, indicating that entrainment is not significant.
 For completed low Rayleigh high Schmidt flows $C_3$ increases to a value of $9.1$.
 However, the nominal value of $1$ is recovered within the completed trajectories.
@@ -294,7 +294,7 @@ Identifying and correcting this model breakdown would be expected to recover $C_
 \begin{figure}
 \includegraphics[width=\columnwidth]{figs/C5-vs-Rayleigh-Schmidt}
 \caption{ \flabel{C5VsParam}
-  Best fit for $C_5$ vs Rayleigh and Schmidt numbers.
+  Best fit for $C_5$ versus Rayleigh and Schmidt numbers.
   Experiments on the left side of the dashed line completed when the bubble stopped rising.
   Experiments on the right side of the dashed line are incomplete, having approached the vertical boundaries of the simulated domain.
 }
@@ -302,10 +302,12 @@ Identifying and correcting this model breakdown would be expected to recover $C_
 
 The parameter $C_5$ gives the ratio of the span-wise circumference of the scalar interface to the wavelength.
 If the bubble were rectangular in cross section with diameter $\lambda / 2$, then $C_5 = 4$.
+If the bubble had a circular cross section with diameter $\lambda / 2$, then $C_5 \approx \pi$.
+If the bubble diameter is less than a half-wavelength, then $C_5 < \pi$.
 The mixing width $\delta$ increases with time, so the $C_5$ term is most influential at late times.
 Therefore, the values of $C_5$ in the incomplete trajectories should be taken with a grain of salt.
 
-The fit values of $C_5$ are plotted vs the Rayleigh and Schmidt numbers in \fref{C5VsParam}.
+The fit values of $C_5$ are plotted versus the Rayleigh and Schmidt numbers in \fref{C5VsParam}.
 Among the completed trajectories, $C_5$ is a much stronger function of the Schmidt number than the Rayleigh number, increasing in both.
 The values are between 2 and 3, indicate a thinning of the bubble that decreases the mix rate by reducing surface area and total quantity of pure light fluid transported into the dense fluid.
 
@@ -329,7 +331,7 @@ It would be very interesting if it remained, and further motivates completing th
 \begin{figure}
 \includegraphics[width=\columnwidth]{figs/C7-vs-Rayleigh-Schmidt}
 \caption{ \flabel{C7VsParam}
-  Best fit for $C_7$ vs Rayleigh and Schmidt numbers.
+  Best fit for $C_7$ versus Rayleigh and Schmidt numbers.
   Experiments on the left side of the dashed line completed when the bubble stopped rising.
   Experiments on the right side of the dashed line are incomplete, having approached the vertical boundaries of the simulated domain.
 }
@@ -339,7 +341,7 @@ Similar to $C_3$, $C_7$ gives the ratio of the buoyant volume to the maximal mix
 A value of $C_7 = 1$ implies the effective Atwood number is zeroed when $M(t) = \lambda^2 h$.
 Values greater than one imply that some portion of the positively buoyant fluid that would be in bubble has become entrained into the neighboring spike, allowing $M(t) > \lambda^2 h$ while retaining net buoyancy.
 
-The fit values of $C_7$ are plotted vs the Rayleigh and Schmidt numbers in \fref{C7VsParam}.
+The fit values of $C_7$ are plotted versus the Rayleigh and Schmidt numbers in \fref{C7VsParam}.
 The complete trajectories all have $C_7 \approx 1$, while the incomplete trajectories at higher Rayleigh numbers have increasing $C_7$.
 It is possible that at higher Rayleigh numbers some volume of light fluid detaches from the bubble and is transported into the spike.
 However, it is more likely that in the incomplete cases $C_7$, which influences the dynamics most at high mixing volumes, is underconstrained.

@@ -2,7 +2,7 @@
 
 We base our model on the buoyancy-drag models of \cite{Oron2001}:
 \begin{equation}
-(\rho_1 + \rho_2) \mathcal{V} \ddot{h} = (\rho_2 - \rho_1) \mathcal{V} - C \dot{h}^2 \rho \mathcal{A}
+(\rho_1 + \rho_2) \mathcal{V} \ddot{h} = (\rho_2 - \rho_1) g \mathcal{V} - C \dot{h}^2 \rho \mathcal{A}
 \end{equation}
 where $\rho_1$ and $\rho_2$ are the densities of the light and heavy fluid,
 $\mathcal{V}$ is the characteristic volume of the bubble
@@ -15,7 +15,7 @@ Making the Boussinesq approximation, $\rho_1 \approx \rho_2$ yields:
 \end{equation}
 In the self-similar regime there is only one length-scale, so $\mathcal{A}/\mathcal{V} \sim 1 / \lambda$.
 However, in the single-mode regime that is the focus of this study, the bubbles are elongated, producing two length scales: a span-wise scale $\lambda$ and a stream-wise scale $h$.
-Therefore, for the smRTI $\mathcal{A}/\mathcal{V} \sim \frac{1}{h}$ and the model of Oron et. al yields un-bounded velocities:
+Therefore, for the smRTI $\mathcal{A}/\mathcal{V} \sim \frac{1}{h}$ and the model of Oron \etal yields un-bounded velocities:
 \begin{equation}
 \ddot{h} = A g - \frac{C}{2} \frac{\dot{h}^2}{h}
 \end{equation}
@@ -44,11 +44,11 @@ To complete the dynamic equation, we must characterize the inertia of the bubble
 The bubble is roughly cylindrical with a height $h$, so we expect an inertial term of the form $\lambda^2 h$.
 However, consider the limit of $h \rightarrow 0$.  
 Here, streamlines must extend from bubble to spike, which has a characteristic separation $\lambda$ for an inertial term of the form $\lambda^3$.
-Therefore, we expect the inertia to be a mix of a term that goes as $\lambda^2 h$ and one that goes as$\lambda^3$:
+Therefore, we expect the inertia to be a mix of a term that goes as $\lambda^2 h$ and one that goes as $\lambda^3$:
 \begin{equation} \elabel{inertia}
-I = C_4 \lambda^2 h + C_3 \lambda^3,
+I = C_3 \lambda^2 h + C_4 \lambda^3,
 \end{equation}
-where $C_4$ and $C_5$ are two more unknown coefficients.
+where $C_3$ and $C_4$ are two more unknown coefficients.
 
 The complete dynamic equation is:
 \begin{equation}
@@ -56,7 +56,7 @@ The complete dynamic equation is:
 \end{equation}
 Without loss of generality, we can let $C_0 = 1$ and simplify:
 \begin{equation} \elabel{dynamics}
-\ddot{h} = \frac{A g h - C_1 \dot{h}^2 - C_2 \nu (h/\lambda) \dot{h}}{ C_3 h + C_4 \lambda }
+\ddot{h} = \frac{A g h - C_1 \dot{h}^2 - C_2 \nu (h/\lambda^2) \dot{h}}{ C_3 h + C_4 \lambda }
 \end{equation}
 We can non-dimensionalize by defining a dimensionless length and time:
 \begin{equation}
@@ -66,7 +66,9 @@ which simplifes:
 \begin{equation}
 \ddot{z} = \frac{z - C_1 \dot{z}^2 - C_2 \text{Gr}^{-1/2} z \dot{z}}{C_3 z + C_4},
 \end{equation}
-where $\text{Gr} = A g \lambda^3 \nu^{-2}$ is the Grashof number.
+where
+the derivative is with repsect to $\tau$ and 
+$\text{Gr} = A_0 g \lambda^3 \nu^{-2}$ is the Grashof number.
 
 
 \subsection{Mixing}
@@ -77,16 +79,16 @@ However, the interfacial mixing continues to grow with the interfacial area, whi
 Therefore, for any finite diffusivity, the bubble will ultimately diffuse away.
 For this reason, we must include the effects of interficial mixing, at least to the first order.
 
-The quantity of mixed fluid, $M$ is computed directly from the time, bubble height, diffusivity, and initial interface thicnkess.
+The quantity of mixed fluid, $m$ is computed directly from the time, bubble height, diffusivity, and initial interface thicnkess.
 The quantity of mixed fluid is defined as the integral of the absolute value of the scalar:
 \begin{equation}
-M(t) = \int 1-\text{abs}\left[\phi(x,y,z,t)\right] dV,
+	m(t) = \int \left( 1-\text{abs}\left[\phi(x,y,z,t)\right] \right) dV,
 \end{equation}
 where we assume the mean scalar is zero, $\int \phi dV = 0$.
 
 We approximate the volume integral by a 1D integral across the interface multiplied by the surface area:
 \begin{equation}
-M(t) \approx S \int 1- \text{abs}\left[\phi_1(r)\right] dr
+	m(t) \approx S \int \left( 1- \text{abs}\left[\phi_1(r)\right] \right) dr
 \end{equation}
 where $S$ is the surface area and
 $\phi_1$ is a model 1D scalar profile:
@@ -97,7 +99,7 @@ where $\delta$ is the interface width and
 $d$ is the diameter of the bubble.
 
 The surface area has contributions from the bubble tip and side walls:
-\begin{equation}
+\begin{equation} \elabel{surface_area}
 S = \left(C_6 \lambda^2 + C_5 \lambda h\right)
 \end{equation}
 where $C_5$ and $C_6$ are unknown coefficients.
@@ -118,17 +120,16 @@ The interface width is modeled by simple 1D diffusion:
 where $t_0$ is chosen to match $\delta(0)$ to the initial condition.
 
 We perform the integral through the bubble:
-\begin{equation}
+\begin{equation} \elabel{profile1d}
 \begin{split}
-\int_{-d/2}^{d/2} 1- \left|\phi_1(r)\right| dr &= \frac{\delta}{\sqrt{\pi}} \left( 1 - \exp\left[-\frac{d^2}{\delta^2}\right]\right) \\
+	\int_{-d/2}^{d/2} \left(1- \left|\phi_1(r)\right| \right) dr &= \frac{\delta}{\sqrt{\pi}} \left( 1 - \exp\left[-\frac{d^2}{\delta^2}\right]\right) \\
 &+ d \left(1 - \erf\left[\frac{d}{\delta}\right]\right).
 \end{split}
 \end{equation}
 
-
 The mixed mass must still be connected to the dynamics equation via the Atwood number:
 \begin{equation} \elabel{effective-atwood}
-A = A_0 \left( 1 - \frac{M}{V}\right),
+A = A_0 \left( 1 - \frac{m}{V}\right),
 \end{equation}
 where $A_0$ is `pure` Atwood number and
 $V$ is the volume of the bubble.
@@ -138,44 +139,10 @@ V = \left(C_8 \lambda^3 + C_7 \lambda^2 h\right),
 \end{equation}
 where $C_7$ and $C_8$ scale the volume analogously to $C_5$ and $C_6$.
 
-Unlike in the dynmics, when coefficient could be discarded without loss of generality, all four of $C_5, C_6, C_7$ and $C_8$ are nessesary because the absolute value of $M \propto (C_5, C_6)$ can be measured directly.
-Therefore, an overall scale factor can not be removed.
-
-\begin{comment}
-The quantitiy of mixed fluid $M$ is modeledy by simple diffusion:
-\begin{equation}
-\dot{M} = \frac{D S}{2 \sqrt{\pi} \delta}
-\end{equation}
-where D is the diffusivity,
-$S$ is the surface area, and 
-$\delta$ is the interface width.
-We approximate the scala profile as an error function, yielding an expression for the thickness
-\begin{equation}
-\delta = \frac{M \sqrt{\pi}}{S}
-\end{equation}
-In the spirit of the inertial term, \eref{inertia}, we write the surface area as a mix of a terms including and excluding the stream-wise length scale $h$:
-\begin{equation}
-S = C_5 \lambda h + C_6 \lambda^2
-\end{equation}
-Togther, this yields:
-\begin{equation}
-\dot{M} = \frac{1}{2 \pi} D (C_5 \lambda h + C_6 \lambda^2)^2 \frac{1}{M}.
-\end{equation}
-Finally, we couple to the dynamic equation by relating the mixed fluid to the dynamic Atwood number:
-\begin{equation} \elabel{effective-atwood}
-A = A_0 \left(1 - \frac{M}{C_3 \lambda^2 h  + C_4 \lambda^3} \right)
-\end{equation}
-We can non-dimensionalize by defining
-\begin{equation}
-m = \frac{M}{\lambda^3},
-\end{equation}
-which simplifes:
-\begin{equation}
-\dot{m} = \frac{1}{\text{Sc} \sqrt{\pi \text{Gr}}} \left(C_5 z + C_6\right)^2 \frac{1}{m},
-\end{equation}
-where $\text{Sc} = \nu / D$ is the Schmidt number.
-
-\end{comment}
+The volume of mixed fluid, $m(t)$, can be measured directly in the simulations.
+This gives meaning to the value of $m(t)$ independent of the ratio $m(t)/V$.
+Therefore, unlike in the dynmics, where a coefficient could be discarded without loss of generality, all four of $C_5, C_6, C_7$ and $C_8$ are nessesary.
+The overall scale factor can not be removed if we want to compare to mixed volume measurements.
 
 \subsection{Coefficient constraints}
 First, consider the limit where $D = 0$, $\nu = 0$, and $h \rightarrow 0$.
@@ -203,10 +170,14 @@ x = \sqrt{\frac{8 \pi^3 \nu^2}{A g \lambda^3}} = \sqrt{\frac{(2 \pi)^3}{\text{Gr
 \end{equation}
 and Gr is the Grashof number.
 
-Next consider the initial quantity of mixed mass for small sharp interfaces, $\delta(0), a_0 \rightarrow 0$.
+Next, consider the initial quantity of mixed mass for small sharp interfaces, $\delta(0), a_0 \rightarrow 0$.
 We assume the initial condition is an error function profile:
 \begin{equation}
-M(t=0) = \lambda^2 \int_{-\infty}^{\infty} \text{erf}\left[\frac{z}{\delta}\right] = \frac{\delta}{\sqrt{\pi}} = \frac{\delta C_6}{\sqrt{\pi}},
+M(t=0) = \lambda^2 \int_{-\infty}^{\infty} \text{erf}\left[\frac{z}{\delta}\right] = \frac{2\lambda^2 \delta}{\sqrt{\pi}}.
+\end{equation}
+Equating this to the product of \eref{surface_area} and \eref{profile1d}
+\begin{equation}
+\frac{2 \lambda^2 \delta}{\sqrt{\pi}}= \frac{C_6 \lambda^2 \delta}{\sqrt{\pi}},
 \end{equation}
 which implies that $C_6 = 2$.
 
@@ -245,8 +216,8 @@ which is the same as $C_4$ in the inviscid case.
 \includegraphics[width=\columnwidth]{figs/slice_w}
 \caption{Vertical component of the velocity, $w$}
 \end{subfigure}
-\caption{
-Slices of the scalar and vertical component of the velocity along the diagonal of a bubble at early times and high Rayleigh number.
+\caption{ \flabel{bubble_geom}
+Slices of the scalar and vertical component of the velocity along the diagonal of a bubble at early times and high Grashof number.
 The arrows indiciate the dependence of the model terms on different span-wise length scales, and are identical in both figures.
 $C_1$ is related to the maximum cross sectional diameter of the bubble in the velocity field.
 $C_2$ is related to the nominal side-wall diameter of the bubble in the velocity field.
@@ -256,22 +227,23 @@ $\delta$ is related to the interface thickness in the scalar field.
 \end{figure*}
 
 The parameter $C_1$ scales the form drag and serves as a drag coefficient.  
-Because we have let $C_0 = 1$, the hydralic diameter of the bubble is roughly $\lambda$.
-Had we let $C_0 = 1/4$, the diameter would be the more common $\lambda/2$, but many of the parameters would be fractional.
+Because we have let $C_0 = 1$, the force balance is really aggreated over two rising bubbles and two falling spikes, each with diameter $\lambda / 2$.
+Therefore, we multiply the force on a single bubble of diameter $\lambda/2$ by 4.
 Now, we relate $C_1$ to the drag coefficient $C_d$ in the drag equation:
 \begin{equation}
-C_1 \lambda^2 \dot{h}^2 = \frac{1}{2} C_d A \dot{h}^2
+C_1 \lambda^2 \dot{h}^2 = 2 C_d A \dot{h}^2
 \end{equation}
 so $C_1$ can be estimated using drag coefficients of similar objects:
 \begin{equation} \elabel{prior_c1}
-C_1 = \frac{C_d}{2} \frac{A}{\lambda^2}.
+C_1 = 2 C_d \frac{A}{\lambda^2},
 \end{equation}
+where $A \approx (\lambda/2)^2$.
 Initially, the bubble tip is a flat plate, which has $C_d = 1.28$.
 At late times, the bubble is closer to an elongated cylinder, which has $C_d = 0.82$, but with a somewhat streamlined tip, which further reduces drag.
 We expect $C_1 \approx 0.64$, but possibly much smaller if the bubble takes a streamlined shape.
 However, if the bubble spreads to have a diameter greater than $\lambda / 2$, $C_1$ could be greater than $0.64$.
 
-Next, Consider the limit when $h \rightarrow \infty$ and $D = 0$:
+Next, onsider the limit when $h \rightarrow \infty$ and $D = 0$:
 The dynamical equation becomes
 \begin{equation}
 \ddot{h} = \frac{A g - C_2 \nu (1/\lambda) \dot{h}}{C_3}
@@ -313,19 +285,11 @@ where the ratio $f_D / \bar{f}_D$ is affected by the geometry and departure from
 For example, for square ducts $f_D/\bar{f}_D \approx 0.889$, so $C_2 \approx 114.$. 
 
 The product of the coefficient $C_5$ and $\lambda h$ gives the interfacial area of the side of the bubble.
-If the bubbles were smooth and cylindrical, then $C_5 = \pi$
-\begin{comment}
-Next, consider the limit where $D = 0$ and $h \rightarrow 0$.
-The dynamical equation becomes:
-\begin{equation}
-\ddot{h} = \left[\frac{C_0 A g }{C_3 \lambda} - C_2 \nu \dot{h}/\lambda \right] h
-\end{equation}
-In the spirit of the linear growth model, assume the interface grows as $h(t) = a_0 \cosh[\gamma t] $, with
-\begin{equation}
-\gamma = \frac{C_0 A g }{C_3 \lambda} - C_2 \nu \dot{h}/\lambda 
-\end{equation}
-The velocity is given by $\dot{h} = a_0 \gamma \sinh[\gamma t] = \gamma \tanh[\gamma t] h$, yielding:
-\begin{equation}
-\gamma = \frac{C_0 A g }{C_3 \lambda} - \gamma C_2 \tanh[\gamma t] h \nu /\lambda 
-\end{equation}
-\end{comment}
+Therefore, $C_5$ captures information both about the bubble shape and the bubble diameter.
+If the bubbles had diameter $\lambda / 2$ and were smooth and rectangular, then $C_5 \approx 4$
+If the bubble has a lower surface area shape, e.g. cylindrical, or is thinner then $C_5 < 4$.
+
+These diameters, along with the relevant span-wise length scales in the preceeding coefficients, are sketched in \fref{bubble_geom}.
+The diameter associated with $C_1$ is defined as the entrainment width at the bubble tip, in contrast to the width at the bubble center used for $C_2$.
+The diameter associated with $C_5$ is defined similarly to $C_2$, but with respect to the scalar interface.
+The interface width $\delta$ also depends on the scalar representation of the bubble.

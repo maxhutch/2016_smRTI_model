@@ -10,7 +10,7 @@
 \caption{Late times}
 \end{subfigure}
 \caption{ \flabel{high_Ra_traj}
-Bubble Froude number vs non-dimensional bubble height for $\text{Ra} = 10^{5.75}, \text{Sc} = 4$, simulation vs model with successive terms enabled.
+Bubble Froude number vs non-dimensional bubble height for $\text{Ra} = 10^{5.75}, \text{Sc} = 4$, simulation vs model with successive terms enabled: first $C_4, C_6$ and $C_8$, then $C_3$, then $C_1$, then $C_2$, and finally $C_5$ and $C_7$.
 The dashed vertical lines divide the trajectory into three regimes: linear growth for $H/\lambda < .05$, saturation until $H / \lambda \approx 8$, and viscosity beyond that.
 The stagnation and re-acceleration transients are seen begining at $H/\lambda = 0.5$ and ending by $H / \lambda = 1.5$.
 }
@@ -26,7 +26,7 @@ The stagnation and re-acceleration transients are seen begining at $H/\lambda = 
 \caption{Late times}
 \end{subfigure}
 \caption{ \flabel{low_Ra_traj}
-Bubble Froude number vs non-dimensional bubble height for $\text{Ra} = 10^{4.5}, \text{Sc} = 8$, simulation vs model with successive terms enabled.
+Bubble Froude number vs non-dimensional bubble height for $\text{Ra} = 10^{4.5}, \text{Sc} = 8$, simulation vs model with successive terms enabled: first $C_4, C_6$ and $C_8$, then $C_3$, then $C_1$, then $C_2$, and finally $C_5$ and $C_7$.
 Dashed vertical lines divide the trajectory into four regimes: linear growth for $H/\lambda < 0.05$, saturation until $H / \lambda \approx 0.1$, viscosity until $H / \lambda \approx 1.3$, and diffusion beyond that.
 The stagnation and re-acceleration transients, seen in \fref{high_Ra_traj}, are suppressed by the viscous regime, which onsets before the transient begins at $H / \lambda = 0.5$.
 }
@@ -34,8 +34,16 @@ The stagnation and re-acceleration transients, seen in \fref{high_Ra_traj}, are 
 
 Single mode experiments have been limited to bubble heights of $1.8\lambda$~\cite{Wilkinson2007}.
 Simulations have reached in $4\lambda$ in 3D~\cite{Ramaprabhu2012} and $9\lambda$ in 2D~\cite{Wei2012}.
-Here, we present trajectories that continue up to $17\lambda$, e.g. \fref{high_Ra_traj}.
-However, the low Rayleigh number bubbles stop rising at lower aspect rations, e.g. \fref{high_Ra_traj}.
+Here, we present trajectories that continue up to $17\lambda$, for example \fref{high_Ra_traj}.
+However, the more dissipative bubbles stop rising at lower aspect rations, for example \fref{low_Ra_traj}.
+Plotted with the non-dimensional bubble height, $h / \lambda$, and nondimensional mixed volume, $M / \lambda^3$ is the non-dimensional velocity, or Froude number, which is defined as:
+\begin{equation}
+  \text{Fr} = \frac{v}{\sqrt{A g \lambda}}
+\end{equation}
+The dissipation in the bubble is characterized by the Rayleigh number:
+\begin{equation}
+  \text{Ra} = \text{Gr} \text{Sc} = \frac{A_0 g \lambda^3}{\nu D}
+\end{equation}
 
 In the spirit of recent analyses~\cite{Ramaprabhu2012, Wei2012}, we try to identify distinct growth regimes.
 To do so, we consider the behavior of the simple model with coefficients set to zero.
@@ -60,7 +68,7 @@ which differs from the linear theory by the absence of a $-D k^2$ term.
 This is the only term that can cause unstable interfaces to decay, i.e. $\gamma < 0$ for positive Atwood numbers.
 In the simple model, all unmixed bubbles grow while in the linear theory highly diffusive bubbles decay.
 
-The other terms, i.e. those scaled by $C_1, C_2, C_3, C_5$ and $C_7$, can be omitted while the description of the exponential growth is unaffected.
+The other terms, \ie those scaled by $C_1, C_2, C_3, C_5$ and $C_7$, can be omitted while the description of the exponential growth is unaffected.
 
 \subsection{Saturation regime}
 The exponential growth saturates as the bubble height increases.
@@ -72,7 +80,7 @@ which becomes significant when $h \approx C_4 \lambda / C_3$.
 We will find in the following section that $C_3$ takes a value of about 1, so, omitting viscous corrections, saturation halves the growth rate at $h \approx \lambda / (2\pi)$.
 
 The definition of the start of the saturation regime is somewhat arbitrary.
-Here, we propose the definition $h/\lambda < 0.05$ as it is where the exponential and saturated plots of the Froude number vs height visually deviate.
+Here, we propose the definition $h/\lambda < 0.05$ as it is where the exponential and saturated plots of the Froude number versus height visually deviate.
 The important thing is that this threshold is independent of $Ag$, the Grashof number, and the Rayleigh number.
 Within the saturation regime, the acceleration takes a limiting value of $Ag$, defining a saturation velocity:
 \begin{equation} \elabel{vel_sat}
@@ -113,14 +121,14 @@ where we've let $C_2 = 128$, the nominal value from Poiseuille flow.
 \includegraphics[width=\columnwidth]{figs/Depth-vs-Rayleigh}
 \caption{ \flabel{depth_line}
   Penetration depth, non-dimensionalized, vs the Rayleigh.
-  The dashed line is a best fit line.
+  The dashed line is a best fit line $h/\lambda = 2.41 \times 10^{-4} \text{Ra} - 0.36$.
 }
 \end{figure}
 
 The rate of diffusion across the surface of the bubble also scales with the bubble height.
 When the viscous drag limits the bubble's velocity, the flux of pure fluid into the bubble, which goes as the velocity, is unable to match the flux of mixed fluid through the interface.
 Mixing dilutes the buoyant fluid, reducing the Atwood number and therefore the bubble velocity.
-Ultimately, the Atwood number reaches zero and the bubble stops rising.
+Ultimately, the Atwood number reaches zero and eventually the bubble stops rising.
 
 The penetration depth is the maximum height of the bubble, which is the height of the bubble at the stopping condition of this analysis.
 We can estimate the scaling of the penetration depth as the product of a characteristic velocity with a characteristic time-scale.
