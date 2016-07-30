@@ -2,7 +2,7 @@
 
 To evaluate the simple model of \sref{model}, we conduct a battery of direct numerical simulations.
 The novel components of the simple model, i.e. viscous drag and mixing, are most pronounced at late times.
-We primarily direct our effort at simulating higher aspect ratio domains to allow the bubble to reach a dissipative regime.
+We primarily direct our effort at simulating higher aspect ratio domains to allow the bubble to reach a dissipative flow.
 
 The numerical experiments simulate the incompressible Navier-Stokes equations with the Boussinesq approximation:
 \begin{align}
@@ -56,8 +56,8 @@ This range has been identified empirically to be approximately $6 \times 10^2 \l
 The number of spatial samples needed to resolve the advection-diffusion equation for the scalar goes with the Peclet number to the third power.
 It is prohibitively expensive to perform calculations at high Schmidt numbers and high Grashof numbers.  
 
-Simulations are performed with the NekBox version of the Nek5000 code, which has been previously validated against single-mode Rayleigh-Taylor experiments~\cite{Hutchinson2016,Wilkinson2007}.
-The spectral element method implemented by NekBox has purely dispersive errors and converges exponentially with the spectral order.
+Simulations are performed with the NekBox version~\cite{NekBox} of the Nek5000 code~\cite{argonne:nekdoc}, which has been previously validated against single-mode Rayleigh-Taylor experiments~\cite{Hutchinson2016,Wilkinson2007}.
+The spectral element method implemented by NekBox has purely dispersive errors and converges exponentially with the spectral order~\cite{fischer:hom}.
 The resolution parameters, the number of spectral elements, the order of the spectral elements, and the time step were chosen to achieve an accuracy of $10^{-4}$ in the bubble aspect ratio~\cite{hutchinson2016efficiency}.
 
 \subsection{Observables}

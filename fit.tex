@@ -63,6 +63,7 @@ Simulation conditions, fit coefficients, and relative errors.
 \includegraphics[width=\columnwidth]{figs/H-8-1}
 \caption{ \flabel{example_fit}
   Example fit of the bubble height, top, and mixed volume, bottom, at $\text{Ra} = $ and $\text{Sc} = 8$.
+  The dashed line is center plot is the stagnation velocity from potential flow models.
   The Froude number, which is a non-dimensional velocity, is not directly fit but shows agreement between the model and simulation.
 }
 \end{figure}
@@ -113,7 +114,7 @@ R = \beta \left| \left| \frac{C - \bar{C}}{\bar{C}} \right| \right|_2,
 where $\beta$ is the regularization parameter,
 $C$ is the vector of model coefficients, and
 $\bar{C}$ are the coefficient estimates.
-Although the buoyancy-drag model is non-linear, this L2 regularization can be thought of as a Tikhonov regularization or Ridge Regression.
+Although the buoyancy-drag model is non-linear, this L2 regularization can be thought of as a Tikhonov regularization~\cite{roths2001generalized} or ridge regression~\cite{marquardt1975ridge}.
 The regularization parameter is chosen to be an order smaller than the model error, $\beta = 0.1 E_d$.
 The if the regularized dynamic error ends up lower than the unregularized error, the unregularized problem must not have converged to the local minima.
 In those cases, the unregularized fit is repeated with the regularized coefficient values as a starting seed.
