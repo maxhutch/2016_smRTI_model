@@ -217,12 +217,13 @@ which is the same as $C_4$ in the inviscid case.
 \caption{Vertical component of the velocity, $w$}
 \end{subfigure}
 \caption{ \flabel{bubble_geom}
-Slices of the scalar and vertical component of the velocity along the diagonal of a bubble at early times and high Grashof number.
+Slices of the scalar and vertical component of the velocity at early times and high Grashof number.
 The arrows indiciate the dependence of the model terms on different span-wise length scales, and are identical in both figures.
 $C_1$ is related to the maximum cross sectional diameter of the bubble in the velocity field.
 $C_2$ is related to the nominal side-wall diameter of the bubble in the velocity field.
 $C_5$ is related to the nominal side-wall diameter of the bubble in the scalar field.
 $\delta$ is related to the interface thickness in the scalar field.
+The slice is of the plane $x=y$, which passes through only bubble centers.
 }
 \end{figure*}
 
@@ -231,13 +232,15 @@ Because we have let $C_0 = 1$, the force balance is really aggreated over two ri
 Therefore, we multiply the force on a single bubble of diameter $\lambda/2$ by 4.
 Now, we relate $C_1$ to the drag coefficient $C_d$ in the drag equation:
 \begin{equation}
-C_1 \lambda^2 \dot{h}^2 = 2 C_d A \dot{h}^2
+	C_1 \lambda^2 \dot{h}^2 = 2 C_d \mathcal{A} \dot{h}^2,
 \end{equation}
+where $\mathcal{A}$ is the cross sectional area,
 so $C_1$ can be estimated using drag coefficients of similar objects:
 \begin{equation} \elabel{prior_c1}
-C_1 = 2 C_d \frac{A}{\lambda^2},
+C_1 = 2 C_d \frac{
+	\mathcal{A}}{\lambda^2},
 \end{equation}
-where $A \approx (\lambda/2)^2$.
+where $\mathcal{A} \approx (\lambda/2)^2$.
 Initially, the bubble tip is a flat plate, which has $C_d = 1.28$.
 At late times, the bubble is closer to an elongated cylinder, which has $C_d = 0.82$, but with a somewhat streamlined tip, which further reduces drag.
 We expect $C_1 \approx 0.64$, but possibly much smaller if the bubble takes a streamlined shape.
@@ -246,11 +249,11 @@ However, if the bubble spreads to have a diameter greater than $\lambda / 2$, $C
 Next, onsider the limit when $h \rightarrow \infty$ and $D = 0$:
 The dynamical equation becomes
 \begin{equation}
-\ddot{h} = \frac{A g - C_2 \nu (1/\lambda) \dot{h}}{C_3}
+\ddot{h} = \frac{A_0 g - C_2 \nu (1/\lambda) \dot{h}}{C_3}
 \end{equation}
 which leads to a terminal velocity of:
 \begin{equation} \elabel{visc_vel}
-\dot{h} = \frac{A g \lambda^2 }{C_2 \nu},
+\dot{h} = \frac{A_0 g \lambda^2 }{C_2 \nu},
 \end{equation}
 or a non-dimensional velocity, i.e. Froude number:
 \begin{equation}
@@ -265,7 +268,7 @@ where $L$ is the length of the duct,
 $v$ is the mean velocity,
 $d$ is the hydraulic diameter,
 and $f_D$ is the Darcy friction factor.
-In our case, $L = h$, $v = \dot{h}$, and $\Delta p = A g h$, so:
+In our case, $L = h$, $v = \dot{h}$, and $\Delta p = A_0 g h$, so:
 \begin{equation}
 A g = \frac{f_D}{2} \frac{\dot{h}^2}{d},
 \end{equation}
@@ -275,7 +278,7 @@ A g = \frac{f_D}{\bar{f}_D} 32 \nu \frac{\dot{h}}{d^2}.
 \end{equation}
 The hydraulic diameter $d = \lambda / 2$, so:
 \begin{equation}
-\dot{h} = \frac{\bar{f}_D}{f_D} \frac{A g \lambda^2}{128 \nu} .
+\dot{h} = \frac{\bar{f}_D}{f_D} \frac{A_0 g \lambda^2}{128 \nu} .
 \end{equation}
 This gives an estimate for $C_2$:
 \begin{equation}
